@@ -1,0 +1,11 @@
+{
+  "elements":[
+    {
+      "name": "seekBar",
+      "screen": "saveTax",
+      "identifier": "id",
+      "value": "seek_bar",
+      "waitFor": "presence"
+    }
+  ]
+}
