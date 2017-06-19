@@ -32,7 +32,7 @@ public class OptimusElementFinder {
     }
 
 
-    public WebElement find(String appConsumer,String screenName, String fieldName) throws OptimusException {
+    public By find(String appConsumer,String screenName, String fieldName) throws OptimusException {
         String testFeed = System.getProperty("testFeed") + ".json";
         System.out.println("TestFEEDD=="+testFeed);
         String appJson = getAppJson(testFeed);
@@ -40,7 +40,7 @@ public class OptimusElementFinder {
         Element appElement = elementStore(appName).read(screenName).find(fieldName);
         By locator = getLocatorType(appElement);
         new WaitControl(driver).waitFor(appElement, locator);
-        return driver.findElement(locator);
+        return locator;
     }
 
     private By getLocatorType(Element appElement) {

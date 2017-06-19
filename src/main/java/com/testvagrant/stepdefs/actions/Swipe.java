@@ -9,12 +9,12 @@ public enum Swipe implements Event {
     SWIPE_LEFT(SWIPE_LEFT_CODE),
     SWIPE_RIGHT(SWIPE_RIGHT_CODE);
 
-    private String  code;
-    Swipe(String  code) {
+    private String code;
+    Swipe(String code) {
         this.code = code;
     }
 
-    public String  getEventCode() {
+    public String getEventCode() {
         return code;
     }
 }

@@ -3,13 +3,16 @@ package com.testvagrant.stepdefs.core;
 
 import com.testvagrant.commons.exceptions.OptimusException;
 import com.testvagrant.stepdefs.core.events.Event;
+import com.testvagrant.stepdefs.core.events.Events;
 import com.testvagrant.stepdefs.exceptions.NoSuchEventException;
 import io.appium.java_client.AppiumDriver;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
 
-import static com.testvagrant.stepdefs.core.events.EventFinder.eventFinder;
 import static com.testvagrant.stepdefs.core.Tavern.tavern;
+import static com.testvagrant.stepdefs.core.events.EventFinder.eventFinder;
+import static com.testvagrant.stepdefs.core.events.EventLookup.eventLookup;
+import static com.testvagrant.stepdefs.core.events.Events.ASSERT;
 import static com.testvagrant.stepdefs.finder.OptimusElementFinder.optimusElementFinder;
 
 public class Tapster {
@@ -63,8 +66,12 @@ public class Tapster {
 
     public Tapster serve() throws NoSuchEventException, OptimusException {
         Event event = eventFinder().findEvent(action);
-        WebElement targetElement = optimusElementFinder(driver).find(consumer,screen,element);
-        tavern(driver).event(event).element(targetElement).value(value).serve();
+        By targetBy = optimusElementFinder(driver).find(consumer, screen, element);
+        Events events = eventLookup().load().getEvent(Integer.valueOf(event.getEventCode(), 2));
+        if (ASSERT.equals(events))
+            tavern(driver).event(event).value(value).serve(targetBy);
+        else
+            tavern(driver).event(event).value(value).serve(driver.findElement(targetBy));
         return this;
     }
 

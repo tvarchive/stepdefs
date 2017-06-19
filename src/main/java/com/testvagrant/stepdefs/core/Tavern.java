@@ -3,10 +3,12 @@ package com.testvagrant.stepdefs.core;
 
 import com.testvagrant.stepdefs.core.events.Event;
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static com.testvagrant.stepdefs.core.events.EventCodes.*;
 import static com.testvagrant.stepdefs.core.events.EventLookup.eventLookup;
+import static com.testvagrant.stepdefs.helpers.AssertHelper.assertHelper;
 import static com.testvagrant.stepdefs.helpers.ScrollHelper.scroller;
 import static com.testvagrant.stepdefs.helpers.SlideHelper.slider;
 import static com.testvagrant.stepdefs.helpers.SwipeHelper.swiper;
@@ -19,6 +21,7 @@ public class Tavern {
     private WebElement element;
     private String value;
     private AppiumDriver driver;
+    private By by;
     private Tavern(AppiumDriver driver) {
         this.driver = driver;
     }
@@ -42,7 +45,8 @@ public class Tavern {
         return this;
     }
 
-    void serve() {
+    void serve(WebElement element) {
+        this.element = element;
         int eventValue = getEventValue(event.getEventCode());
         switch (eventLookup().load().getEvent(eventValue)) {
             case TAP:
@@ -64,6 +68,33 @@ public class Tavern {
 
     }
 
+    public void serve(By targetBy) {
+        this.by = targetBy;
+        serveAssert();
+    }
+
+    private void serveAssert() {
+        switch (event.getEventCode()) {
+            case ASSERT_IS_DISPLAYED_CODE:
+                assertHelper(driver).isTextDisplayed(by, value);
+                break;
+            case ASSERT_IS_NOT_DISPLAYED_CODE:
+                assertHelper(driver).isTextNotDisplayed(by, value);
+                break;
+            case ASSERT_IS_ENABLED_CODE:
+                assertHelper(driver).isEnabled(by);
+                break;
+            case ASSERT_IS_NOT_ENABLED_CODE:
+                assertHelper(driver).isNotEnabled(by);
+                break;
+            case ASSERT_IS_VISIBLE_CODE:
+                assertHelper(driver).isDisplayed(by);
+                break;
+            case ASSERT_IS_NOT_VISIBLE_CODE:
+                assertHelper(driver).isNotDisplayed(by);
+                break;
+        }
+    }
 
 
     private void serveTaps() {
@@ -117,7 +148,7 @@ public class Tavern {
 
 
     private int getEventValue(String event) {
-        return Integer.valueOf(event,2);
+        return Integer.valueOf(event, 2);
     }
 
 
