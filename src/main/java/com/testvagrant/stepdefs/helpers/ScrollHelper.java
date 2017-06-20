@@ -15,7 +15,7 @@ public class ScrollHelper extends ActionHelper {
     public static ScrollHelper scroller(AppiumDriver driver) {
         return new ScrollHelper(driver);
     }
-    public void scrollDown(By by){
+    public void scrollDown(By by) {
         hideKeyboard();
         int i = 0;
         while (i < 12) {
@@ -47,12 +47,4 @@ public class ScrollHelper extends ActionHelper {
         driver.swipe(5, getHeight() / 3, 5, getHeight() * 2 / 3, 1000);
     }
 
-    private boolean isElementPresent(By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
 }
