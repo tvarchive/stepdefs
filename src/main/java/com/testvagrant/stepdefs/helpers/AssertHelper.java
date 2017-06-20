@@ -45,7 +45,7 @@ public class AssertHelper extends ActionHelper {
         Assert.assertEquals("Element is Visible",false,isElementPresent(by));
     }
 
-    protected boolean isElementPresent(By by) {
+    private boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
             return true;

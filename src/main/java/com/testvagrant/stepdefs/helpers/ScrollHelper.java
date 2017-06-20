@@ -1,6 +1,8 @@
 package com.testvagrant.stepdefs.helpers;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 
@@ -13,11 +15,11 @@ public class ScrollHelper extends ActionHelper {
     public static ScrollHelper scroller(AppiumDriver driver) {
         return new ScrollHelper(driver);
     }
-    public void scrollDown(WebElement webElement){
+    public void scrollDown(By by){
         hideKeyboard();
         int i = 0;
         while (i < 12) {
-            if (webElement.isDisplayed()) {
+            if (isElementPresent(by)) {
                 return;
             }
             down();
@@ -25,11 +27,11 @@ public class ScrollHelper extends ActionHelper {
         }
     }
 
-    public void scrollUp(WebElement webElement) {
+    public void scrollUp(By by) {
         hideKeyboard();
         int i = 0;
         while (i < 12) {
-            if (webElement.isDisplayed()) {
+            if (isElementPresent(by)) {
                 return;
             }
             up();
@@ -45,4 +47,12 @@ public class ScrollHelper extends ActionHelper {
         driver.swipe(5, getHeight() / 3, 5, getHeight() * 2 / 3, 1000);
     }
 
+    private boolean isElementPresent(By by) {
+        try {
+            driver.findElement(by);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
 }

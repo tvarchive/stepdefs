@@ -13,6 +13,7 @@ import static com.testvagrant.stepdefs.core.Tavern.tavern;
 import static com.testvagrant.stepdefs.core.events.EventFinder.eventFinder;
 import static com.testvagrant.stepdefs.core.events.EventLookup.eventLookup;
 import static com.testvagrant.stepdefs.core.events.Events.ASSERT;
+import static com.testvagrant.stepdefs.core.events.Events.SCROLL;
 import static com.testvagrant.stepdefs.finder.OptimusElementFinder.optimusElementFinder;
 
 public class Tapster {
@@ -68,7 +69,7 @@ public class Tapster {
         Event event = eventFinder().findEvent(action);
         By targetBy = optimusElementFinder(driver).find(consumer, screen, element);
         Events events = eventLookup().load().getEvent(Integer.valueOf(event.getEventCode(), 2));
-        if (ASSERT.equals(events))
+        if (ASSERT.equals(events) || SCROLL.equals(events))
             tavern(driver).event(event).value(value).serve(targetBy);
         else
             tavern(driver).event(event).value(value).serve(driver.findElement(targetBy));

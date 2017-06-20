@@ -70,7 +70,15 @@ public class Tavern {
 
     public void serve(By targetBy) {
         this.by = targetBy;
-        serveAssert();
+        int eventValue = getEventValue(event.getEventCode());
+        switch (eventLookup().load().getEvent(eventValue)) {
+            case SCROLL:
+                serveScroll();
+                break;
+            case ASSERT:
+                serveAssert();
+                break;
+        }
     }
 
     private void serveAssert() {
@@ -111,10 +119,10 @@ public class Tavern {
     private void serveScroll() {
         switch (event.getEventCode()) {
             case SCROLL_UP_CODE:
-                scroller(driver).scrollUp(element);
+                scroller(driver).scrollUp(by);
                 break;
             case SCROLL_DOWN_CODE:
-                scroller(driver).scrollDown(element);
+                scroller(driver).scrollDown(by);
                 break;
         }
     }
