@@ -15,6 +15,6 @@ public interface EventCodes {
     String ASSERT_IS_ENABLED_CODE = "01011";
     String ASSERT_IS_NOT_ENABLED_CODE = "01100";
     String ASSERT_IS_VISIBLE_CODE = "01101";
-    String ASSERT_IS_NOT_VISIBLE_CODE = "01111";
+    String ASSERT_IS_NOT_VISIBLE_CODE = "01110";
 
 }
