@@ -48,8 +48,4 @@ public class EventFinder {
         else
             return event;
     }
-
-
-
-
 }

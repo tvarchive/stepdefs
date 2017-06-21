@@ -6,7 +6,8 @@ import java.util.Map;
 
 public class EventLookup {
 
-    private Map<Integer,Events> eventsMap = new HashMap<>();
+    private Map<Integer, Events> eventsMap = new HashMap<>();
+
     private EventLookup() {
 
     }
@@ -26,12 +27,18 @@ public class EventLookup {
 
     private void initEventMap() {
         eventsMap.put(1, Events.TAP);
-        eventsMap.put(2,Events.TAP);
-        eventsMap.put(3,Events.SCROLL);
-        eventsMap.put(4,Events.SCROLL);
-        eventsMap.put(5,Events.SWIPE);
-        eventsMap.put(6,Events.SWIPE);
-        eventsMap.put(7,Events.SLIDE);
-        eventsMap.put(8,Events.TYPE);
+        eventsMap.put(2, Events.TAP);
+        eventsMap.put(3, Events.SCROLL);
+        eventsMap.put(4, Events.SCROLL);
+        eventsMap.put(5, Events.SWIPE);
+        eventsMap.put(6, Events.SWIPE);
+        eventsMap.put(7, Events.SLIDE);
+        eventsMap.put(8, Events.TYPE);
+        eventsMap.put(9, Events.ASSERT);
+        eventsMap.put(10, Events.ASSERT);
+        eventsMap.put(11, Events.ASSERT);
+        eventsMap.put(12, Events.ASSERT);
+        eventsMap.put(13, Events.ASSERT);
+        eventsMap.put(14, Events.ASSERT);
     }
 }
