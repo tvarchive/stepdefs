@@ -20,7 +20,7 @@ public class WaitControl {
     }
 
 
-    public void waitFor(Element appElement, By locator) {
-        waitForMap.get(appElement.getWaitFor()).waitForElement(driver, locator);
+    public void waitFor(String waitFor, By locator) {
+        waitForMap.get(waitFor).waitForElement(driver, locator);
     }
 }

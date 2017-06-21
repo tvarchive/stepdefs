@@ -1,5 +1,6 @@
 package com.testvagrant.stepdefs.helpers;
 
+import com.testvagrant.stepdefs.finder.WaitControl;
 import io.appium.java_client.AppiumDriver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -20,18 +21,22 @@ public class AssertHelper extends ActionHelper {
     }
 
     public void isTextDisplayed(By by, String text) {
+        new WaitControl(driver).waitFor("presence", by);
         Assert.assertEquals("Text not present ", text, driver.findElement(by).getText());
     }
 
     public void isTextNotDisplayed(By by, String text) {
+        new WaitControl(driver).waitFor("presence", by);
         Assert.assertNotEquals("Text is present ", text, driver.findElement(by).getText());
     }
 
     public void isEnabled(By by) {
+        new WaitControl(driver).waitFor("presence", by);
         Assert.assertEquals("Element not enabled ", true, driver.findElement(by).isEnabled());
     }
 
     public void isNotEnabled(By by) {
+        new WaitControl(driver).waitFor("presence", by);
         Assert.assertEquals("Element is enabled ", false, by.findElement(driver).isEnabled());
     }
 

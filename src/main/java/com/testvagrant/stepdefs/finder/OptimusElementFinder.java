@@ -35,7 +35,7 @@ public class OptimusElementFinder {
     public WebElement findWebElement(String appConsumer, String screenName, String fieldName) throws OptimusException {
         Element appElement = getAppElement(appConsumer, screenName, fieldName);
         By locator = getLocatorType(appElement);
-        new WaitControl(driver).waitFor(appElement, locator);
+        new WaitControl(driver).waitFor(appElement.getWaitFor(), locator);
         return driver.findElement(locator);
     }
 
