@@ -67,12 +67,14 @@ public class Tapster {
 
     public Tapster serve() throws NoSuchEventException, OptimusException {
         Event event = eventFinder().findEvent(action);
-        By targetBy = optimusElementFinder(driver).find(consumer, screen, element);
         Events events = eventLookup().load().getEvent(Integer.valueOf(event.getEventCode(), 2));
-        if (ASSERT.equals(events) || SCROLL.equals(events))
+        if (ASSERT.equals(events) || SCROLL.equals(events)) {
+            By targetBy = optimusElementFinder(driver).findBy(consumer, screen, element);
             tavern(driver).event(event).value(value).serve(targetBy);
-        else
-            tavern(driver).event(event).value(value).serve(driver.findElement(targetBy));
+        } else {
+            WebElement webElement = optimusElementFinder(driver).findWebElement(consumer, screen, element);
+            tavern(driver).event(event).value(value).serve(webElement);
+        }
         return this;
     }
 

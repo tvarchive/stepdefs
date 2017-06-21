@@ -32,15 +32,24 @@ public class OptimusElementFinder {
     }
 
 
-    public By find(String appConsumer,String screenName, String fieldName) throws OptimusException {
-        String testFeed = System.getProperty("testFeed") + ".json";
-        System.out.println("TestFEEDD=="+testFeed);
-        String appJson = getAppJson(testFeed);
-        String appName = new OptimusConfigParser(appJson).getAppBelongingTo(appConsumer);
-        Element appElement = elementStore(appName).read(screenName).find(fieldName);
+    public WebElement findWebElement(String appConsumer, String screenName, String fieldName) throws OptimusException {
+        Element appElement = getAppElement(appConsumer, screenName, fieldName);
         By locator = getLocatorType(appElement);
         new WaitControl(driver).waitFor(appElement, locator);
-        return locator;
+        return driver.findElement(locator);
+    }
+
+    public By findBy(String appConsumer, String screenName, String fieldName) throws OptimusException {
+        Element appElement = getAppElement(appConsumer, screenName, fieldName);
+        return getLocatorType(appElement);
+    }
+
+    public Element getAppElement(String appConsumer, String screenName, String fieldName) throws OptimusException {
+        String testFeed = System.getProperty("testFeed") + ".json";
+        System.out.println("TestFEED==" + testFeed);
+        String appJson = getAppJson(testFeed);
+        String appName = new OptimusConfigParser(appJson).getAppBelongingTo(appConsumer);
+        return elementStore(appName).read(screenName).find(fieldName);
     }
 
     private By getLocatorType(Element appElement) {
