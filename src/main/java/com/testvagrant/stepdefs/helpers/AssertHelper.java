@@ -11,8 +11,6 @@ import org.openqa.selenium.WebElement;
  */
 public class AssertHelper extends ActionHelper {
 
-    private AppiumDriver driver;
-
     AssertHelper(AppiumDriver driver) {
         super(driver);
     }
