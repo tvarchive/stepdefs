@@ -8,6 +8,7 @@ import com.testvagrant.stepdefs.exceptions.NoSuchEventException;
 import io.appium.java_client.AppiumDriver;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import static com.testvagrant.stepdefs.core.Tavern.tavern;
 import static com.testvagrant.stepdefs.core.events.EventFinder.eventFinder;
