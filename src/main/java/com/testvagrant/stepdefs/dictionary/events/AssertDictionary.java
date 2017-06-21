@@ -44,10 +44,10 @@ public class AssertDictionary extends EventDictionary {
     }
 
     private void initAssertIsNotVisibleDictionary() {
-        assertIsVisibleDictionary.add("NotVisible");
-        assertIsVisibleDictionary.add("Not-Visible");
-        assertIsVisibleDictionary.add("Not Visible");
-        assertIsVisibleDictionary.add("Not Displayed");
+        assertIsNotVisibleDictionary.add("NotVisible");
+        assertIsNotVisibleDictionary.add("Not-Visible");
+        assertIsNotVisibleDictionary.add("Not Visible");
+        assertIsNotVisibleDictionary.add("Not Displayed");
     }
 
     private void initAssertIsVisibleDictionary() {
