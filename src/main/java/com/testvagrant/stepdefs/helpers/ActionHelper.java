@@ -54,7 +54,7 @@ public class ActionHelper {
         return Integer.parseInt(strWithoutPercentage);
     }
 
-    protected boolean isElementPresent(By by) {
+    boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
             return true;

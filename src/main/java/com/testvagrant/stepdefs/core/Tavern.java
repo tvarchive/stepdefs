@@ -22,6 +22,7 @@ public class Tavern {
     private String value;
     private AppiumDriver driver;
     private By by;
+
     private Tavern(AppiumDriver driver) {
         this.driver = driver;
     }
@@ -123,6 +124,18 @@ public class Tavern {
                 break;
             case SCROLL_DOWN_CODE:
                 scroller(driver).scrollDown(by);
+                break;
+            case SCROLL_UP_IN_ELEMENT_CODE:
+                scroller(driver).scrollUpInElement(by, value);
+                break;
+            case SCROLL_DOWN_IN_ELEMENT_CODE:
+                scroller(driver).scrollDownInElement(by, value);
+                break;
+            case SCROLL_LEFT_IN_ELEMENT_CODE:
+                scroller(driver).scrollLeftinElement(by, value);
+                break;
+            case SCROLL_RIGHT_IN_ELEMENT_CODE:
+                scroller(driver).scrollRightInElement(by, value);
                 break;
         }
     }

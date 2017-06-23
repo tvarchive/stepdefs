@@ -40,5 +40,9 @@ public class EventLookup {
         eventsMap.put(12, Events.ASSERT);
         eventsMap.put(13, Events.ASSERT);
         eventsMap.put(14, Events.ASSERT);
+        eventsMap.put(15, Events.SCROLL);
+        eventsMap.put(16, Events.SCROLL);
+        eventsMap.put(17, Events.SCROLL);
+        eventsMap.put(18, Events.SCROLL);
     }
 }
