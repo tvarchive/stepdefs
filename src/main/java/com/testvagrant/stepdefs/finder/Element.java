@@ -2,7 +2,7 @@ package com.testvagrant.stepdefs.finder;
 
 public class Element {
 
-    private String name;
+    private String elementName;
 
     private String waitFor;
 
@@ -12,12 +12,12 @@ public class Element {
 
     private String referTo;
 
-    public String getName() {
-        return name;
+    public String getElementName() {
+        return elementName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setElementName(String elementName) {
+        this.elementName = elementName;
     }
 
     public String getWaitFor() {
