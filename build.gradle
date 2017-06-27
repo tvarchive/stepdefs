@@ -20,6 +20,9 @@ dependencies {
     }
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0.pr4'
     compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.0.pr4'
+    compile group: 'org.apache.poi', name: 'poi', version: '3.16'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
+
 
 
 }

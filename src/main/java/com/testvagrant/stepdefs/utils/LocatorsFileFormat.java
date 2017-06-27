@@ -19,8 +19,8 @@ public class LocatorsFileFormat {
         return new LocatorsFileFormat();
     }
 
-    public String getFormat() throws InvalidElementsFormatException {
-        return elementsMapper().getFormat();
+    public LocatorsFileFormat.LocFileFormats getFormat() throws InvalidElementsFormatException {
+        return elementsMapper();
     }
 
 
@@ -40,19 +40,19 @@ public class LocatorsFileFormat {
     }
 
 
-    private enum LocFileFormats {
+    public enum LocFileFormats {
         ELEMENTS(".elements"),
         JSON(".json"),
         XLS(".xls"),
         XLSX(".xlsx");
 
-        private String format;
-        LocFileFormats(String format) {
-            this.format = format;
+        private String formatExtension;
+        LocFileFormats(String formatExtension) {
+            this.formatExtension = formatExtension;
         }
 
-        public String getFormat() {
-            return format;
+        public String getFormatExtension() {
+            return formatExtension;
         }
 
         public static String acceptableFormats() {

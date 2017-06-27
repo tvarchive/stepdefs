@@ -10,6 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
+
 import static com.testvagrant.stepdefs.core.Tavern.tavern;
 import static com.testvagrant.stepdefs.core.events.EventFinder.eventFinder;
 import static com.testvagrant.stepdefs.core.events.EventLookup.eventLookup;
@@ -66,7 +68,7 @@ public class Tapster {
     }
 
 
-    public Tapster serve() throws NoSuchEventException, OptimusException {
+    public Tapster serve() throws NoSuchEventException, OptimusException, IOException {
         Event event = eventFinder().findEvent(action);
         Events events = eventLookup().load().getEvent(Integer.valueOf(event.getEventCode(), 2));
         if (ASSERT.equals(events) || SCROLL.equals(events)) {

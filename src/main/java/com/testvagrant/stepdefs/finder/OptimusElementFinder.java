@@ -7,6 +7,7 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,19 +33,19 @@ public class OptimusElementFinder {
     }
 
 
-    public WebElement findWebElement(String appConsumer, String screenName, String fieldName) throws OptimusException {
+    public WebElement findWebElement(String appConsumer, String screenName, String fieldName) throws OptimusException, IOException {
         Element appElement = getAppElement(appConsumer, screenName, fieldName);
         By locator = getLocatorType(appElement);
         new WaitControl(driver).waitFor(appElement.getWaitFor(), locator);
         return driver.findElement(locator);
     }
 
-    public By findBy(String appConsumer, String screenName, String fieldName) throws OptimusException {
+    public By findBy(String appConsumer, String screenName, String fieldName) throws OptimusException, IOException {
         Element appElement = getAppElement(appConsumer, screenName, fieldName);
         return getLocatorType(appElement);
     }
 
-    public Element getAppElement(String appConsumer, String screenName, String fieldName) throws OptimusException {
+    public Element getAppElement(String appConsumer, String screenName, String fieldName) throws OptimusException, IOException {
         String testFeed = System.getProperty("testFeed") + ".json";
         System.out.println("TestFEED==" + testFeed);
         String appJson = getAppJson(testFeed);
