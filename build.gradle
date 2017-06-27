@@ -18,4 +18,8 @@ dependencies {
     compile('com.testvagrant.optimus:optimus:1.0-SNAPSHOT') {
         changing true
     }
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0.pr4'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.0.pr4'
+
+
 }

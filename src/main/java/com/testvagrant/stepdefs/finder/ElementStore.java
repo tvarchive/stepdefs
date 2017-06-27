@@ -6,12 +6,13 @@ import com.testvagrant.optimus.utils.JsonUtil;
 import com.testvagrant.stepdefs.exceptions.ElementNotPresentException;
 import com.testvagrant.stepdefs.exceptions.ElementsFileNotFoundException;
 import com.testvagrant.stepdefs.exceptions.ElementsFolderNotFoundException;
+import com.testvagrant.stepdefs.exceptions.InvalidElementsFormatException;
 
 import java.io.File;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static com.testvagrant.stepdefs.utils.LocatorsFileFormat.locatorsFF;
 
 public class ElementStore {
 
@@ -22,6 +23,7 @@ public class ElementStore {
     private String screenName;
     private String appName;
     private String fileName;
+    private String fileExtension;
     private ElementStore(String appName) {
         this.appName = appName;
     }
@@ -41,7 +43,7 @@ public class ElementStore {
         Element foundElement =null;
         List<Element> elements = getApp().getElements();
         Optional<Element> first = elements.stream()
-                .filter(element -> element.getName().equalsIgnoreCase(fieldName)).findFirst();
+                .filter(element -> element.getElementName().equalsIgnoreCase(fieldName)).findFirst();
         if(first.isPresent()) {
             foundElement = first.get();
             if(foundElement.getReferTo()!=null) {
@@ -72,7 +74,7 @@ public class ElementStore {
     private String getFileName() throws OptimusException {
         String fileName = getElementsFileRelativePath(new File(System.getProperty("user.dir") + "/src/test/resources/elements/"+getAppName()));
         if(fileName==null) {
-            throw new ElementsFileNotFoundException(getAppName(),screenName);
+            throw new ElementsFileNotFoundException(getAppName(),screenName,fileExtension);
         }
         return fileName;
     }
@@ -89,7 +91,7 @@ public class ElementStore {
             File[] jsons = file.listFiles();
             for(File json : jsons) {
                 if(!json.isDirectory()) {
-                    fileFound = json.getName().equalsIgnoreCase(screenName+".json");
+                    fileFound = json.getName().equalsIgnoreCase(screenName+getFileExtension());
                     if(fileFound) {
                         String absPath = json.getPath();
                         try {
@@ -112,5 +114,11 @@ public class ElementStore {
             throw new ElementsFolderNotFoundException(getAppName());
         }
         return filePath;
+    }
+
+
+    private String getFileExtension() throws InvalidElementsFormatException {
+        fileExtension = locatorsFF().getFormat();
+        return fileExtension;
     }
 }

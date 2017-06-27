@@ -13,10 +13,8 @@ public class ElementStoreTest {
 
     @Test
     public void eleStoreTest() throws OptimusException {
-        Element element = elementStore("scripbox.apk").read("Test1").find("letsGetStarted");
-        Element element1 = elementStore("scripbox.apk").read("test1").find("savingSlider");
-        Assert.assertEquals("letsGetStarted",element.getName());
-        Assert.assertEquals("seekBar",element1.getName());
+        Element element = elementStore("scripbox.apk").read("Test1").find("hola");
+        Assert.assertEquals("hola",element.getElementName());
     }
 
 
