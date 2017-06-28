@@ -63,9 +63,14 @@ public class Tapster {
         return this;
     }
 
+    public Tapster runConcept(String conceptId) {
+        return this;
+    }
+
     public static Tapster tapster() {
         return new Tapster();
     }
+
 
 
     public Tapster serve() throws NoSuchEventException, OptimusException, IOException {

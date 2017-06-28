@@ -2,7 +2,7 @@ package com.testvagrant.stepdefs.finder;
 
 import com.google.gson.Gson;
 import com.testvagrant.commons.exceptions.OptimusException;
-import com.testvagrant.optimus.utils.JsonUtil;
+import com.testvagrant.commons.utils.JsonUtil;
 import com.testvagrant.stepdefs.exceptions.*;
 import com.testvagrant.stepdefs.utils.LocatorsFileFormat;
 

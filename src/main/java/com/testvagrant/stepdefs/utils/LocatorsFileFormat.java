@@ -7,7 +7,7 @@ import com.testvagrant.stepdefs.exceptions.InvalidElementsFormatException;
 import java.io.File;
 import java.util.Arrays;
 
-import static com.testvagrant.stepdefs.utils.ConfigMapper.mapper;
+import static com.testvagrant.commons.utils.OptimusConfigMapper.mapper;
 
 public class LocatorsFileFormat {
 

@@ -46,6 +46,7 @@ public class Tavern {
         return this;
     }
 
+
     void serve(WebElement element) {
         this.element = element;
         int eventValue = getEventValue(event.getEventCode());
