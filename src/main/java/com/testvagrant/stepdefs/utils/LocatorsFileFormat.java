@@ -1,7 +1,7 @@
 package com.testvagrant.stepdefs.utils;
 
 
-import com.testvagrant.stepdefs.core.OptimusConfiguration;
+import com.testvagrant.commons.entities.OptimusConfiguration;
 import com.testvagrant.stepdefs.exceptions.InvalidElementsFormatException;
 
 import java.io.File;

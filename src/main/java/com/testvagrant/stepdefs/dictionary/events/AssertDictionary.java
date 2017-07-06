@@ -44,38 +44,38 @@ public class AssertDictionary extends EventDictionary {
     }
 
     private void initAssertIsNotVisibleDictionary() {
-        assertIsNotVisibleDictionary.add("NotVisible");
-        assertIsNotVisibleDictionary.add("Not-Visible");
-        assertIsNotVisibleDictionary.add("Not Visible");
-        assertIsNotVisibleDictionary.add("Not Displayed");
+        assertIsNotVisibleDictionary.add("notvisible");
+        assertIsNotVisibleDictionary.add("not-visible");
+        assertIsNotVisibleDictionary.add("not visible");
+        assertIsNotVisibleDictionary.add("not displayed");
     }
 
     private void initAssertIsVisibleDictionary() {
-        assertIsVisibleDictionary.add("Visible");
-        assertIsVisibleDictionary.add("Displayed");
+        assertIsVisibleDictionary.add("visible");
+        assertIsVisibleDictionary.add("displayed");
     }
 
     private void initAssertIsNotEnabledDictionary() {
-        assertIsNotEnabledDictionary.add("Disabled");
-        assertIsNotEnabledDictionary.add("Not Enabled");
+        assertIsNotEnabledDictionary.add("disabled");
+        assertIsNotEnabledDictionary.add("not enabled");
     }
 
     private void initAssertIsEnabledDictionary() {
-        assertIsEnabledDictionary.add("Enabled");
+        assertIsEnabledDictionary.add("enabled");
     }
 
     private void initAssertIsTextNotPresentDictionary() {
-        assertIsTextNotPresentDictionary.add("TextNotPresent");
-        assertIsTextNotPresentDictionary.add("Text-Not-Present");
-        assertIsTextNotPresentDictionary.add("Text Not Present");
-        assertIsTextNotPresentDictionary.add(("Text Not Displayed"));
+        assertIsTextNotPresentDictionary.add("textnotpresent");
+        assertIsTextNotPresentDictionary.add("text-not-present");
+        assertIsTextNotPresentDictionary.add("text not present");
+        assertIsTextNotPresentDictionary.add(("text not displayed"));
     }
 
     private void initAssertIsTextPresentDictionary() {
-        assertIsTextPresentDictionary.add("TextPresent");
-        assertIsTextPresentDictionary.add("Text-Present");
-        assertIsTextPresentDictionary.add("Text Present");
-        assertIsTextPresentDictionary.add(("Text Displayed"));
+        assertIsTextPresentDictionary.add("textpresent");
+        assertIsTextPresentDictionary.add("text-present");
+        assertIsTextPresentDictionary.add("text present");
+        assertIsTextPresentDictionary.add(("text displayed"));
     }
 
     public Event search(String action) {

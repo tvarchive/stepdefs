@@ -10,6 +10,6 @@ import java.util.function.Predicate;
 public class ActionPredicate {
 
     public static Predicate<Map.Entry<Event,List<String>>> isActionPresent(String action) {
-        return entry -> entry.getValue().contains(action);
+        return entry -> entry.getValue().contains(action.toLowerCase());
     }
 }

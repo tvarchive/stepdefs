@@ -9,6 +9,7 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     mavenLocal()
+    jcenter()
 }
 
 dependencies {
@@ -19,7 +20,8 @@ dependencies {
     compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.0.pr4'
     compile group: 'org.apache.poi', name: 'poi', version: '3.16'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
-    compile('com.testvagrant.optimus:optimus:1.0-SNAPSHOT') {
-        changing true
-    }
+    compile group: 'com.google.guava', name: 'guava', version: '22.0'
+    compile group: 'org.reflections', name: 'reflections', version: '0.9.11'
+    compile 'com.testvagrant.intents:intents:1.0-SNAPSHOT'
+    testCompile "org.mockito:mockito-core:1.+"
 }

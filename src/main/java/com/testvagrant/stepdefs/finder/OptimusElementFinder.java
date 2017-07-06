@@ -1,8 +1,8 @@
 package com.testvagrant.stepdefs.finder;
 
 import com.testvagrant.commons.exceptions.OptimusException;
+import com.testvagrant.commons.parser.ConfigParser;
 import com.testvagrant.commons.utils.JsonUtil;
-import com.testvagrant.optimus.parser.OptimusConfigParser;
 import com.testvagrant.stepdefs.identifier.*;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
@@ -49,7 +49,7 @@ public class OptimusElementFinder {
         String testFeed = System.getProperty("testFeed") + ".json";
         System.out.println("TestFEED==" + testFeed);
         String appJson = new JsonUtil().getAppJson(testFeed);
-        String appName = new OptimusConfigParser(appJson).getAppBelongingTo(appConsumer);
+        String appName = new ConfigParser(appJson).getAppBelongingTo(appConsumer);
         return elementStore(appName).read(screenName).find(fieldName);
     }
 
