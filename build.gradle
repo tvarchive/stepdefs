@@ -27,69 +27,69 @@ dependencies {
     testCompile "org.mockito:mockito-core:2.8.47"
 }
 
-//task javadocJar(type: Jar) {
-//    classifier = 'javadoc'
-//    from javadoc
-//}
-//
-//task sourcesJar(type: Jar) {
-//    classifier = 'sources'
-//    from sourceSets.main.allSource
-//}
-//
-//artifacts {
-//    archives javadocJar, sourcesJar
-//}
-//
-//signing {
-//    sign configurations.archives
-//}
-//
-//
-//group = "com.testvagrant.stepdefs"
-//archivesBaseName = "stepdefs"
-//version = "1.0.1"
-//
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-//
-//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-//                authentication(userName: ossrhUsername, password: ossrhPassword)
-//            }
-//
-//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-//                authentication(userName: ossrhUsername, password: ossrhPassword)
-//            }
-//
-//            pom.project {
-//                name 'Example Application'
-//                packaging 'jar'
-//                // optionally artifactId can be defined here
-//                description 'Generic step defs for cucumber jvm implementation'
-//                url 'https://bitbucket.org/testvagrant/stepdefs'
-//
-//                scm {
-//                    connection 'scm:git@bitbucket.org:testvagrant/stepdefs.git'
-////                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
-//                    url 'https://bitbucket.org/testvagrant/stepdefs'
-//                }
-//
-//                licenses {
-//                    license {
-//                        name 'The Apache License, Version 2.0'
-//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//                    }
-//                }
-//                developers {
-//                    developer {
-//                        id 'sukesh'
-//                        name 'Sukesh Kumar'
-//                        email 'sukesh@testvagrant.com'
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+
+group = "com.testvagrant.stepdefs"
+archivesBaseName = "stepdefs"
+version = "1.0.1"
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Example Application'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Generic step defs for cucumber jvm implementation'
+                url 'https://bitbucket.org/testvagrant/stepdefs'
+
+                scm {
+                    connection 'scm:git@bitbucket.org:testvagrant/stepdefs.git'
+//                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
+                    url 'https://bitbucket.org/testvagrant/stepdefs'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'sukesh'
+                        name 'Sukesh Kumar'
+                        email 'sukesh@testvagrant.com'
+                    }
+                }
+            }
+        }
+    }
+}
