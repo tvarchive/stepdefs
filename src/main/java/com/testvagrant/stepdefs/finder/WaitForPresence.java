@@ -9,7 +9,7 @@ public class WaitForPresence implements WaitFor {
 
     @Override
     public void waitForElement(AppiumDriver driver, By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 }

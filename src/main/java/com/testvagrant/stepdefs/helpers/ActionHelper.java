@@ -16,17 +16,26 @@ public class ActionHelper {
     TouchAction touchAction;
     ActionHelper(AppiumDriver driver) {
         this.driver = driver;
-        webDriverWait = new WebDriverWait(driver,10);
+        webDriverWait = new WebDriverWait(driver,30);
         touchAction = new TouchAction(driver);
     }
 
 
     void waitForElementToBeClickable(WebElement element) {
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+        } catch (WebDriverException e) {
+            Thread.currentThread().interrupt();
+        }
+
     }
 
     void waitForElementToBeVisible(WebElement element) {
-        webDriverWait.until(ExpectedConditions.visibilityOf(element));
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOf(element));
+        } catch (WebDriverException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     void hideKeyboard() {
@@ -60,14 +69,13 @@ public class ActionHelper {
             webDriverWait = new WebDriverWait(driver,10);
             webDriverWait.until(ExpectedConditions.presenceOfElementLocated(by));
             WebElement element = driver.findElement(by);
-            if(element.getSize().getHeight()>0 && element.getSize().getWidth()>0) {
-                return true;
-            } else {
-                return false;
-            }
+            return element.getSize().getHeight()>0 && element.getSize().getWidth()>0;
         } catch (NoSuchElementException e) {
             return false;
+        } catch (WebDriverException e) {
+            Thread.currentThread().interrupt();
         }
+        return false;
     }
 
     boolean isElementVisible(By by) {
@@ -76,14 +84,13 @@ public class ActionHelper {
             webDriverWait = new WebDriverWait(driver,10);
             webDriverWait.until(ExpectedConditions.visibilityOf(driver.findElement(by)));
             WebElement element = driver.findElement(by);
-            if(element.getSize().getHeight()>0 && element.getSize().getWidth()>0) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
+            return element.getSize().getHeight()>0 && element.getSize().getWidth()>0;
+        } catch (NoSuchElementException e) {
             return false;
+        } catch (WebDriverException e) {
+            Thread.currentThread().interrupt();
         }
+        return false;
     }
 
 }
