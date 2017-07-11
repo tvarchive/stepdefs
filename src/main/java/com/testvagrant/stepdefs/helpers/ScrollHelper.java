@@ -18,7 +18,7 @@ public class ScrollHelper extends ActionHelper {
         hideKeyboard();
         int i = 0;
         while (i < 12) {
-            if (isElementPresent(by)) {
+            if (isElementVisible(by)) {
                 return;
             }
             down();

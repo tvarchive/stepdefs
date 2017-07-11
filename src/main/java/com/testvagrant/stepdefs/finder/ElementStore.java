@@ -145,10 +145,10 @@ public class ElementStore {
         String keyWord =null;
         switch (getFileFormat()) {
             case JSON:
-                keyWord = "elements file";
+                keyWord = "json file";
                 break;
             case ELEMENTS:
-                keyWord="json file";
+                keyWord="elements file";
                 break;
             case XLS:case XLSX:
                 keyWord="excel sheet";

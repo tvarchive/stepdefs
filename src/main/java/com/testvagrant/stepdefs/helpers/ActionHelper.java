@@ -55,10 +55,33 @@ public class ActionHelper {
     }
 
     boolean isElementPresent(By by) {
+        System.out.println("Came here");
         try {
-            driver.findElement(by);
-            return true;
+            webDriverWait = new WebDriverWait(driver,10);
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(by));
+            WebElement element = driver.findElement(by);
+            if(element.getSize().getHeight()>0 && element.getSize().getWidth()>0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    boolean isElementVisible(By by) {
+        System.out.println("Came here for visibility");
+        try {
+            webDriverWait = new WebDriverWait(driver,10);
+            webDriverWait.until(ExpectedConditions.visibilityOf(driver.findElement(by)));
+            WebElement element = driver.findElement(by);
+            if(element.getSize().getHeight()>0 && element.getSize().getWidth()>0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
             return false;
         }
     }
