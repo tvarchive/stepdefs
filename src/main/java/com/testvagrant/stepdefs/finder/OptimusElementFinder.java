@@ -6,7 +6,10 @@ import com.testvagrant.commons.utils.JsonUtil;
 import com.testvagrant.stepdefs.identifier.*;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -37,7 +40,7 @@ public class OptimusElementFinder {
         Element appElement = getAppElement(appConsumer, screenName, fieldName);
         By locator = getLocatorType(appElement);
         new WaitControl(driver).waitFor(appElement.getWaitFor(), locator);
-        return driver.findElement(locator);
+        return getElement(locator);
     }
 
     public By findBy(String appConsumer, String screenName, String fieldName) throws OptimusException, IOException {
@@ -55,6 +58,17 @@ public class OptimusElementFinder {
 
     private By getLocatorType(Element appElement) {
         return identifierMap.get(appElement.getIdentifier()).getLocator(appElement.getValue());
+    }
+
+
+    private WebElement getElement(By locator) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+            return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        } catch (WebDriverException e) {
+            Thread.currentThread().interrupt();
+            return driver.findElement(locator);
+        }
     }
 
 

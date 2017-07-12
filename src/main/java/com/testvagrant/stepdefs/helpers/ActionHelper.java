@@ -22,20 +22,12 @@ public class ActionHelper {
 
 
     void waitForElementToBeClickable(WebElement element) {
-        try {
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
-        } catch (WebDriverException e) {
-            Thread.currentThread().interrupt();
-        }
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
 
     }
 
     void waitForElementToBeVisible(WebElement element) {
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(element));
-        } catch (WebDriverException e) {
-            Thread.currentThread().interrupt();
-        }
+        webDriverWait.until(ExpectedConditions.visibilityOf(element));
     }
 
     void hideKeyboard() {
@@ -66,31 +58,27 @@ public class ActionHelper {
     boolean isElementPresent(By by) {
         System.out.println("Came here");
         try {
-            webDriverWait = new WebDriverWait(driver,10);
-            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(by));
+            synchronized (this) {
+                webDriverWait = new WebDriverWait(driver, 30);
+                webDriverWait.until(ExpectedConditions.presenceOfElementLocated(by));
+            }
             WebElement element = driver.findElement(by);
             return element.getSize().getHeight()>0 && element.getSize().getWidth()>0;
         } catch (NoSuchElementException e) {
             return false;
-        } catch (WebDriverException e) {
-            Thread.currentThread().interrupt();
         }
-        return false;
     }
 
     boolean isElementVisible(By by) {
         System.out.println("Came here for visibility");
         try {
-            webDriverWait = new WebDriverWait(driver,10);
+            webDriverWait = new WebDriverWait(driver,30);
             webDriverWait.until(ExpectedConditions.visibilityOf(driver.findElement(by)));
             WebElement element = driver.findElement(by);
             return element.getSize().getHeight()>0 && element.getSize().getWidth()>0;
         } catch (NoSuchElementException e) {
             return false;
-        } catch (WebDriverException e) {
-            Thread.currentThread().interrupt();
         }
-        return false;
     }
 
 }
