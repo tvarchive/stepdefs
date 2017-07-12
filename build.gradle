@@ -48,7 +48,7 @@ signing {
 
 group = "com.testvagrant.stepdefs"
 archivesBaseName = "stepdefs"
-version = "1.0.1"
+version = "1.0.2"
 
 uploadArchives {
     repositories {
@@ -87,6 +87,12 @@ uploadArchives {
                         id 'sukesh'
                         name 'Sukesh Kumar'
                         email 'sukesh@testvagrant.com'
+                    }
+
+                    developer {
+                        id 'krishnanand'
+                        name 'Krishnanand'
+                        email 'krishnanand@testvagrant.com'
                     }
                 }
             }
