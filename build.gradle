@@ -90,8 +90,8 @@ uploadArchives {
                     }
 
                     developer {
-                        id 'krishnanand'
-                        name 'Krishnanand'
+                        id 'KrishnanandB'
+                        name 'Krishnanand B'
                         email 'krishnanand@testvagrant.com'
                     }
                 }
