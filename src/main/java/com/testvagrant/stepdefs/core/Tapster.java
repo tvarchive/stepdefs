@@ -1,13 +1,12 @@
 package com.testvagrant.stepdefs.core;
 
 
-import com.testvagrant.commons.exceptions.OptimusException;
 import com.testvagrant.stepdefs.core.events.Event;
 import com.testvagrant.stepdefs.core.events.Events;
 import com.testvagrant.stepdefs.exceptions.NoSuchEventException;
-import io.appium.java_client.AppiumDriver;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
@@ -21,7 +20,7 @@ import static com.testvagrant.stepdefs.finder.OptimusElementFinder.optimusElemen
 
 public class Tapster {
 
-    private AppiumDriver driver;
+    private WebDriver driver;
     private String consumer;
     private String screen;
     private String action;
@@ -32,7 +31,7 @@ public class Tapster {
 
     }
 
-    public Tapster useDriver(AppiumDriver driver) {
+    public Tapster useDriver(WebDriver driver) {
         this.driver = driver;
         return this;
     }
@@ -70,7 +69,7 @@ public class Tapster {
 
 
 
-    public Tapster serve() throws NoSuchEventException, OptimusException, IOException {
+    public Tapster serve() throws NoSuchEventException,IOException {
         Event event = eventFinder().findEvent(action);
         Events events = eventLookup().load().getEvent(Integer.valueOf(event.getEventCode(), 2));
         if (ASSERT.equals(events) || SCROLL.equals(events)) {

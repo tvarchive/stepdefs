@@ -1,13 +1,10 @@
 package com.testvagrant.stepdefs.utils;
 
 
-import com.testvagrant.commons.entities.OptimusConfiguration;
+import com.testvagrant.stepdefs.entities.StepDefsConfiguration;
 import com.testvagrant.stepdefs.exceptions.InvalidElementsFormatException;
 
-import java.io.File;
 import java.util.Arrays;
-
-import static com.testvagrant.commons.utils.OptimusConfigMapper.mapper;
 
 public class LocatorsFileFormat {
 
@@ -25,14 +22,12 @@ public class LocatorsFileFormat {
 
 
     private LocFileFormats elementsMapper() throws InvalidElementsFormatException {
-        File file = new File(System.getProperty("user.dir") + "/src/test/resources/META-INF/Optimus.yaml");
-        if(file.exists()) {
-            OptimusConfiguration configuration = null;
+        StepDefsConfiguration stepDefsConfiguration = new ConfigParser().getConfiguration();
+        if(stepDefsConfiguration.getElementsFormat()!=null) {
             try {
-                configuration =  mapper(file).map(OptimusConfiguration.class);
-                return LocFileFormats.valueOf(configuration.getElementsFormat().toUpperCase());
+                return LocFileFormats.valueOf(stepDefsConfiguration.getElementsFormat().toUpperCase());
             } catch (Exception e) {
-                throw new InvalidElementsFormatException(configuration.getElementsFormat(),LocFileFormats.acceptableFormats());
+                throw new InvalidElementsFormatException(stepDefsConfiguration.getElementsFormat(),LocFileFormats.acceptableFormats());
             }
         }else {
             return LocFileFormats.JSON;

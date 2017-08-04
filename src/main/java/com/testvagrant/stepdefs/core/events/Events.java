@@ -7,5 +7,6 @@ public enum  Events {
     SCROLL,
     SWIPE,
     SLIDE,
-    ASSERT
+    ASSERT,
+    CLICK
 }

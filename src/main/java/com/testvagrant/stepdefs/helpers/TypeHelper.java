@@ -1,19 +1,19 @@
 package com.testvagrant.stepdefs.helpers;
 
 
-import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class TypeHelper extends ActionHelper {
 
-    private AppiumDriver driver;
+    private WebDriver driver;
     private WebElement element;
     private String value;
-    private TypeHelper(AppiumDriver driver) {
+    private TypeHelper(WebDriver driver) {
         super(driver);
     }
 
-    public static TypeHelper typeHelper(AppiumDriver driver) {
+    public static TypeHelper typeHelper(WebDriver driver) {
         return new TypeHelper(driver);
     }
 

@@ -1,9 +1,7 @@
 package com.testvagrant.stepdefs.exceptions;
 
 
-import com.testvagrant.commons.exceptions.OptimusException;
-
-public class ElementsFileNotFoundException extends OptimusException {
+public class ElementsFileNotFoundException extends RuntimeException {
 
     public ElementsFileNotFoundException(String appName ,String fileName, String fileExtension) {
         super(String.format("Unable to find '%s%s' in '/resources/elements/%s' path. Are the elements properly created? " +

@@ -1,9 +1,7 @@
 package com.testvagrant.stepdefs.exceptions;
 
 
-import com.testvagrant.commons.exceptions.OptimusException;
-
-public class ElementsFolderNotFoundException extends OptimusException {
+public class ElementsFolderNotFoundException extends RuntimeException {
 
 
     public ElementsFolderNotFoundException(String appName) {

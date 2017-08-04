@@ -20,5 +20,8 @@ public interface EventCodes {
     String SCROLL_DOWN_IN_ELEMENT_CODE = "10000";
     String SCROLL_LEFT_IN_ELEMENT_CODE = "10001";
     String SCROLL_RIGHT_IN_ELEMENT_CODE = "10010";
+    String CLICK_CODE = "10011";
+    String DOUBLE_CLICK_CODE = "10100";
+
 
 }

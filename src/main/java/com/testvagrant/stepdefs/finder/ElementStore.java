@@ -1,12 +1,14 @@
 package com.testvagrant.stepdefs.finder;
 
 import com.google.gson.Gson;
-import com.testvagrant.commons.exceptions.OptimusException;
-import com.testvagrant.commons.utils.JsonUtil;
+import com.testvagrant.stepdefs.entities.StepDefsConfiguration;
 import com.testvagrant.stepdefs.exceptions.*;
+import com.testvagrant.stepdefs.utils.ConfigParser;
 import com.testvagrant.stepdefs.utils.LocatorsFileFormat;
+import org.apache.commons.io.IOUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -22,22 +24,22 @@ public class ElementStore {
     private String fileName;
     private String fileExtension;
     private static App app;
-    private ElementStore(String appName) {
-        this.appName = formatAppName(appName);
+    private ElementStore() {
+        this.appName = getAppName();
     }
 
-    public static ElementStore elementStore(String appName) {
-        return new ElementStore(appName);
+    public static ElementStore elementStore() {
+        return new ElementStore();
     }
 
-    public ElementStore read(String screenName) throws OptimusException {
+    public ElementStore read(String screenName) {
         this.fileFound = false;
         this.screenName = screenName;
         this.fileName = getFileName();
         return this;
     }
 
-    public Element find(String fieldName) throws OptimusException, IOException {
+    public Element find(String fieldName) throws IOException {
         Element foundElement =null;
         List<Element> elements = getApp().getElements();
         Optional<Element> first = elements.stream()
@@ -54,19 +56,15 @@ public class ElementStore {
     }
 
 
-    private Element findElementByReference(Element element) throws OptimusException, IOException {
+    private Element findElementByReference(Element element) throws  IOException {
         read("CommonElements");
         return find(element.getReferTo());
     }
 
-
-
-
-
     private App getApp() throws InvalidElementsFormatException, IOException, SheetNotFoundException {
         switch (getFileFormat()) {
             case ELEMENTS:case JSON:
-                String appJson = new JsonUtil().getAppJson(fileName);
+                String appJson = getAppJson(fileName);
                 app = new Gson().fromJson(appJson, App.class);
                 break;
             case XLS:case XLSX:
@@ -77,7 +75,7 @@ public class ElementStore {
         return app;
     }
 
-    private String getFileName() throws OptimusException {
+    private String getFileName() {
         String fileName =null;
         switch (getFileFormat()) {
             case ELEMENTS:case JSON:
@@ -100,7 +98,7 @@ public class ElementStore {
         return appName.toLowerCase();
     }
 
-    private String getElementsFileRelativePath(File file) throws OptimusException {
+    private String getElementsFileRelativePath(File file) {
         if(file.exists() && file.isDirectory() && !fileFound) {
             File[] jsons = file.listFiles();
             for(File json : jsons) {
@@ -141,6 +139,16 @@ public class ElementStore {
     }
 
 
+    private String getAppName() {
+        StepDefsConfiguration stepDefsConfiguration = new ConfigParser().getConfiguration();
+        String elementsFolderName = stepDefsConfiguration.getElementsFolderName();
+        if(elementsFolderName==null) {
+            throw new MissingElementsFolderNameException();
+        }
+        return elementsFolderName;
+    }
+
+
     private void throwRelevantException(String fieldName) throws InvalidElementsFormatException, ElementNotPresentException {
         String keyWord =null;
         switch (getFileFormat()) {
@@ -155,5 +163,17 @@ public class ElementStore {
                 break;
         }
         throw new ElementNotPresentException(String.format("Element %s is not found in %s %s",fieldName,keyWord,screenName));
+    }
+
+    public String getAppJson(String name) {
+        String result = "";
+        try {
+            result = IOUtils.toString(new FileInputStream(
+                    new File(System.getProperty("user.dir") + "/src/test/resources/" + name)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }
