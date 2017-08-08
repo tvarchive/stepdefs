@@ -8,9 +8,7 @@ public class EventLookup {
 
     private Map<Integer, Events> eventsMap = new HashMap<>();
 
-    private EventLookup() {
-
-    }
+    private EventLookup() {}
 
     public static EventLookup eventLookup() {
         return new EventLookup();

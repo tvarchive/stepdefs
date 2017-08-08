@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import static com.testvagrant.stepdefs.core.events.EventCodes.*;
 import static com.testvagrant.stepdefs.core.events.EventLookup.eventLookup;
+import static com.testvagrant.stepdefs.helpers.AssertHelper.assertHelper;
 import static com.testvagrant.stepdefs.helpers.ClickHelper.clickHelper;
 import static com.testvagrant.stepdefs.helpers.TypeHelper.typeHelper;
 
@@ -73,27 +74,27 @@ public class Tavern {
         int eventValue = getEventValue(event.getEventCode());
         switch (eventLookup().load().getEvent(eventValue)) {
             case ASSERT:
-//                serveAssert();
+                serveAssert();
                 break;
         }
     }
 
-//    private void serveAssert() {
-//        switch (event.getEventCode()) {
-//            case ASSERT_IS_DISPLAYED_CODE:
-//                assertHelper(driver).isTextDisplayed(by, value);
-//                break;
-//            case ASSERT_IS_NOT_DISPLAYED_CODE:
-//                assertHelper(driver).isTextNotDisplayed(by, value);
-//                break;
-//            case ASSERT_IS_ENABLED_CODE:
-//                assertHelper(driver).isEnabled(by);
-//                break;
-//            case ASSERT_IS_NOT_ENABLED_CODE:
-//                assertHelper(driver).isNotEnabled(by);
-//                break;
-//        }
-//    }
+    private void serveAssert() {
+        switch (event.getEventCode()) {
+            case ASSERT_IS_DISPLAYED_CODE:
+                assertHelper(driver).isTextDisplayed(by, value);
+                break;
+            case ASSERT_IS_NOT_DISPLAYED_CODE:
+                assertHelper(driver).isTextNotDisplayed(by, value);
+                break;
+            case ASSERT_IS_ENABLED_CODE:
+                assertHelper(driver).isEnabled(by);
+                break;
+            case ASSERT_IS_NOT_ENABLED_CODE:
+                assertHelper(driver).isNotEnabled(by);
+                break;
+        }
+    }
 
 
     private void serveType() {

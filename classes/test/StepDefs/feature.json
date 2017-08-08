@@ -1,0 +1,172 @@
+{
+  "line": 1,
+  "elements": [
+    {
+      "line": 4,
+      "name": "abc",
+      "description": "abc",
+      "type": "background",
+      "keyword": "Background",
+      "steps": [
+        {
+          "line": 6,
+          "name": "A",
+          "keyword": "Given "
+        },
+        {
+          "line": 7,
+          "name": "B",
+          "keyword": "Then "
+        },
+        {
+          "line": 8,
+          "name": "C",
+          "keyword": "When "
+        }
+      ]
+    },
+    {
+      "line": 10,
+      "name": "i login as mr x",
+      "description": "I login as mr x",
+      "id": "hello-world;i-login-as-mr-x",
+      "type": "scenario",
+      "keyword": "Scenario",
+      "steps": [
+        {
+          "line": 12,
+          "name": "open screen",
+          "keyword": "Given "
+        },
+        {
+          "line": 14,
+          "name": "Screen is open",
+          "keyword": "When "
+        },
+        {
+          "line": 16,
+          "name": "Say Hi",
+          "keyword": "Then "
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "name": "i login as mr x",
+      "description": "I login as mr x",
+      "id": "hello-world;i-login-as-mr-x",
+      "type": "scenario",
+      "keyword": "Scenario",
+      "steps": [
+        {
+          "line": 21,
+          "name": "open screen",
+          "keyword": "Given "
+        },
+        {
+          "line": 23,
+          "name": "Screen is open",
+          "keyword": "When "
+        },
+        {
+          "line": 25,
+          "name": "Say Hi",
+          "keyword": "Then "
+        }
+      ]
+    },
+    {
+      "line": 28,
+      "name": "i login as mr x",
+      "description": "I login as mr x",
+      "id": "hello-world;i-login-as-mr-x",
+      "type": "scenario",
+      "keyword": "Scenario",
+      "steps": [
+        {
+          "line": 30,
+          "name": "open screen",
+          "keyword": "Given "
+        },
+        {
+          "line": 32,
+          "name": "Screen is open",
+          "keyword": "When "
+        },
+        {
+          "line": 34,
+          "name": "Say Hi",
+          "keyword": "Then "
+        }
+      ]
+    },
+    {
+      "examples": [
+        {
+          "line": 41,
+          "name": "",
+          "description": "",
+          "id": "hello-world;i-one-two;",
+          "rows": [
+            {
+              "cells": [
+                "A",
+                "B",
+                "C"
+              ],
+              "line": 42,
+              "id": "hello-world;i-one-two;;1"
+            },
+            {
+              "cells": [
+                "q",
+                "m",
+                "l"
+              ],
+              "line": 43,
+              "id": "hello-world;i-one-two;;2"
+            },
+            {
+              "cells": [
+                "x",
+                "y",
+                "z"
+              ],
+              "line": 44,
+              "id": "hello-world;i-one-two;;3"
+            }
+          ],
+          "keyword": "Examples"
+        }
+      ],
+      "line": 37,
+      "name": "i one two",
+      "description": "",
+      "id": "hello-world;i-one-two",
+      "type": "scenario_outline",
+      "keyword": "Scenario Outline",
+      "steps": [
+        {
+          "line": 38,
+          "name": "i am on \u003cA\u003e",
+          "keyword": "Given "
+        },
+        {
+          "line": 39,
+          "name": "i move to \u003cB\u003e",
+          "keyword": "When "
+        },
+        {
+          "line": 40,
+          "name": "i shall see \u003cC\u003e",
+          "keyword": "Then "
+        }
+      ]
+    }
+  ],
+  "name": "Hello World",
+  "description": "this is a hello world",
+  "id": "hello-world",
+  "keyword": "Feature",
+  "uri": "/Users/krishnanand/Development/TestVagrant/optimus-eco-system/StepDefs/src/test/resources/features/A.feature"
+}
