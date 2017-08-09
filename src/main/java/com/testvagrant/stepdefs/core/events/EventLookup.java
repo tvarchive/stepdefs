@@ -1,6 +1,5 @@
 package com.testvagrant.stepdefs.core.events;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,5 +43,6 @@ public class EventLookup {
         eventsMap.put(18, Events.SCROLL);
         eventsMap.put(19,Events.CLICK);
         eventsMap.put(20,Events.CLICK);
+        eventsMap.put(21,Events.SELECT);
     }
 }

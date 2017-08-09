@@ -1,6 +1,5 @@
 package com.testvagrant.stepdefs.core;
 
-
 import com.testvagrant.stepdefs.core.events.Event;
 import com.testvagrant.stepdefs.core.events.Events;
 import com.testvagrant.stepdefs.exceptions.NoSuchEventException;
@@ -28,7 +27,10 @@ public class Tapster {
     private String value;
 
     private Tapster() {
+    }
 
+    public static Tapster tapster() {
+        return new Tapster();
     }
 
     public Tapster useDriver(WebDriver driver) {
@@ -62,12 +64,7 @@ public class Tapster {
         return this;
     }
 
-
-    public static Tapster tapster() {
-        return new Tapster();
-    }
-
-    public Tapster serve() throws NoSuchEventException,IOException {
+    public Tapster serve() throws NoSuchEventException, IOException {
         Event event = eventFinder().findEvent(action);
         Events events = eventLookup().load().getEvent(Integer.valueOf(event.getEventCode(), 2));
         if (ASSERT.equals(events) || SCROLL.equals(events)) {

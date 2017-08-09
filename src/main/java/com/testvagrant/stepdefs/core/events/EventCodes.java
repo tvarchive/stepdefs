@@ -22,4 +22,5 @@ public interface EventCodes {
     String SCROLL_RIGHT_IN_ELEMENT_CODE = "10010";
     String CLICK_CODE = "10011";
     String DOUBLE_CLICK_CODE = "10100";
+    String SELECT_DROPDOWN_TEXT_CODE = "10101";
 }

@@ -10,6 +10,7 @@ import static com.testvagrant.stepdefs.core.events.EventCodes.*;
 import static com.testvagrant.stepdefs.core.events.EventLookup.eventLookup;
 import static com.testvagrant.stepdefs.helpers.AssertHelper.assertHelper;
 import static com.testvagrant.stepdefs.helpers.ClickHelper.clickHelper;
+import static com.testvagrant.stepdefs.helpers.SelectHelper.selectHelper;
 import static com.testvagrant.stepdefs.helpers.TypeHelper.typeHelper;
 
 public class Tavern {
@@ -54,12 +55,15 @@ public class Tavern {
             case CLICK:
                 serveClick();
                 break;
+            case SELECT:
+                serveSelect();
+                break;
         }
 
     }
 
     private void serveClick() {
-        switch(event.getEventCode()) {
+        switch (event.getEventCode()) {
             case CLICK_CODE:
                 clickHelper(driver).click(element);
                 break;
@@ -69,12 +73,24 @@ public class Tavern {
         }
     }
 
+    private void serveSelect() {
+        switch (event.getEventCode()) {
+            case SELECT_DROPDOWN_TEXT_CODE:
+                selectHelper(driver).onElement(element).selectText(value);
+                break;
+
+        }
+    }
+
     public void serve(By targetBy) {
         this.by = targetBy;
         int eventValue = getEventValue(event.getEventCode());
         switch (eventLookup().load().getEvent(eventValue)) {
             case ASSERT:
                 serveAssert();
+                break;
+            case SELECT:
+                serveSelect();
                 break;
         }
     }

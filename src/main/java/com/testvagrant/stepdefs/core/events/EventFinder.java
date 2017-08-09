@@ -1,6 +1,5 @@
 package com.testvagrant.stepdefs.core.events;
 
-
 import com.testvagrant.stepdefs.dictionary.events.EventDictionary;
 import com.testvagrant.stepdefs.exceptions.NoSuchEventException;
 
@@ -10,6 +9,7 @@ import java.util.List;
 import static com.testvagrant.stepdefs.dictionary.events.AssertDictionary.assertDictionary;
 import static com.testvagrant.stepdefs.dictionary.events.ClickDictionary.clickDictionary;
 import static com.testvagrant.stepdefs.dictionary.events.ScrollDictionary.scrollDictionary;
+import static com.testvagrant.stepdefs.dictionary.events.SelectDictionary.selectDictionary;
 import static com.testvagrant.stepdefs.dictionary.events.SlideDictionary.slideDictionary;
 import static com.testvagrant.stepdefs.dictionary.events.SwipeDictionary.swipeDictionary;
 import static com.testvagrant.stepdefs.dictionary.events.TapDictionary.tapDictionary;
@@ -29,6 +29,7 @@ public class EventFinder {
         eventDictionaries.add(typeDictionary());
         eventDictionaries.add(assertDictionary());
         eventDictionaries.add(clickDictionary());
+        eventDictionaries.add(selectDictionary());
     }
 
     public static EventFinder eventFinder() {
