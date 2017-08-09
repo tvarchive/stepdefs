@@ -37,10 +37,7 @@ public class AssertHelper extends ActionHelper {
         new WaitControl(driver).waitFor("presence", by);
         Assert.assertEquals("Element is enabled ", false, by.findElement(driver).isEnabled());
     }
-
-
     
-
 //    public void isDisplayed(By by) {
 //        Assert.assertEquals("Element not visible", true, isElementPresent(by));
 //    }
