@@ -1,6 +1,5 @@
 package com.testvagrant.stepdefs.core.events;
 
-
 public interface EventCodes {
     String TAP_CODE = "00001";
     String DOUBLE_TAP_CODE = "00010";

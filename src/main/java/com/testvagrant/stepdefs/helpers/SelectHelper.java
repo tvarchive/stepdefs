@@ -51,6 +51,7 @@ public class SelectHelper extends ActionHelper {
         List<WebElement> allOptions = selectElement.getOptions();
         for (WebElement w : allOptions) {
             if (w.getText().equals(value)) {
+                w.click();
                 selectElement.selectByVisibleText(value);
                 flag = 1;
                 break;

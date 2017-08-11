@@ -1,11 +1,9 @@
 package com.testvagrant.stepdefs.helpers;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ClickHelper extends ActionHelper {
-
 
     ClickHelper(WebDriver driver) {
         super(driver);
@@ -16,6 +14,7 @@ public class ClickHelper extends ActionHelper {
     }
 
     public void click(WebElement element) {
+        waitForElementToBeVisible(element);
         waitForElementToBeClickable(element);
         element.click();
     }
