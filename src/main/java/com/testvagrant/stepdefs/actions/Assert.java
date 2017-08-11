@@ -13,6 +13,7 @@ public enum  Assert implements Event{
     ASSERT_IS_NOT_VISIBLE(ASSERT_IS_NOT_VISIBLE_CODE);
 
     private String  code;
+
     Assert(String  code) {
         this.code = code;
     }

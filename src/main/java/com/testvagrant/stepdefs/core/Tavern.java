@@ -97,10 +97,10 @@ public class Tavern {
 
     private void serveAssert() {
         switch (event.getEventCode()) {
-            case ASSERT_IS_DISPLAYED_CODE:
+            case ASSERT_IS_VISIBLE_CODE:
                 assertHelper(driver).isTextDisplayed(by, value);
                 break;
-            case ASSERT_IS_NOT_DISPLAYED_CODE:
+            case ASSERT_IS_NOT_VISIBLE_CODE:
                 assertHelper(driver).isTextNotDisplayed(by, value);
                 break;
             case ASSERT_IS_ENABLED_CODE:
@@ -125,6 +125,4 @@ public class Tavern {
     private int getEventValue(String event) {
         return Integer.valueOf(event, 2);
     }
-
-
 }
