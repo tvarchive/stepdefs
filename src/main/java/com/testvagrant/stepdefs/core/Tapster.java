@@ -76,4 +76,10 @@ public class Tapster {
         }
         return this;
     }
+
+    public Tapster serveWithElement(WebElement webElement) throws NoSuchEventException, IOException {
+        Event event = eventFinder().findEvent(action);
+        tavern(driver).event(event).value(value).serve(webElement);
+        return this;
+    }
 }

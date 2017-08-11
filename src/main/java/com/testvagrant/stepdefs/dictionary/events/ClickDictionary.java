@@ -40,6 +40,7 @@ public class ClickDictionary extends EventDictionary {
 
     private void initDoubleClickDictionary() {
         doubleClickDictionary.add("doubleclick");
+        doubleClickDictionary.add("doubleclicks");
         doubleClickDictionary.add("double click");
         doubleClickDictionary.add("double clicks");
         doubleClickDictionary.add("double-click");

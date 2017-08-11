@@ -24,7 +24,6 @@ public class TypeHelper extends ActionHelper {
 
     public void type(String value) {
         waitForElementToBeVisible(element);
-        element.clear();
         element.sendKeys(value);
     }
 }

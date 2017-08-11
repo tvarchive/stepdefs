@@ -41,6 +41,7 @@ public class SelectDictionary extends EventDictionary{
         selectDictionary.add("select");
         selectDictionary.add("Select");
         selectDictionary.add("selects");
+        selectDictionary.add("selectS");
         selectDictionary.add("Selects");
     }
 }
