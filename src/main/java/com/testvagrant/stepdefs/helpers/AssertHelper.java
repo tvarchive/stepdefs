@@ -38,15 +38,12 @@ public class AssertHelper extends ActionHelper {
         Assert.assertEquals("Element is enabled ", false, by.findElement(driver).isEnabled());
     }
 
+    public void isDisplayed(By by) {
+        Assert.assertEquals("Element not visible", true, driver.findElement(by).getText());
+    }
 
-    
-
-//    public void isDisplayed(By by) {
-//        Assert.assertEquals("Element not visible", true, isElementPresent(by));
-//    }
-//
-//    public void isNotDisplayed(By by) {
-//        Assert.assertEquals("Element is Visible", false, isElementPresent(by));
-//    }
+    public void isNotDisplayed(By by) {
+        Assert.assertEquals("Element is Visible", false, driver.findElement(by).getText());
+    }
 
 }
