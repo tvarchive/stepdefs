@@ -14,6 +14,7 @@ import static com.testvagrant.stepdefs.dictionary.events.SlideDictionary.slideDi
 import static com.testvagrant.stepdefs.dictionary.events.SwipeDictionary.swipeDictionary;
 import static com.testvagrant.stepdefs.dictionary.events.TapDictionary.tapDictionary;
 import static com.testvagrant.stepdefs.dictionary.events.TypeDictionary.typeDictionary;
+import static com.testvagrant.stepdefs.dictionary.events.UploadDictionary.uploadDictionary;
 
 public class EventFinder {
 
@@ -30,6 +31,7 @@ public class EventFinder {
         eventDictionaries.add(assertDictionary());
         eventDictionaries.add(clickDictionary());
         eventDictionaries.add(selectDictionary());
+        eventDictionaries.add(uploadDictionary());
     }
 
     public static EventFinder eventFinder() {

@@ -9,5 +9,6 @@ public enum Events {
     SLIDE,
     ASSERT,
     CLICK,
-    SELECT
+    SELECT,
+    UPLOAD
 }

@@ -1,6 +1,5 @@
 package com.testvagrant.stepdefs.core;
 
-
 import com.testvagrant.stepdefs.core.events.Event;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +11,7 @@ import static com.testvagrant.stepdefs.helpers.AssertHelper.assertHelper;
 import static com.testvagrant.stepdefs.helpers.ClickHelper.clickHelper;
 import static com.testvagrant.stepdefs.helpers.SelectHelper.selectHelper;
 import static com.testvagrant.stepdefs.helpers.TypeHelper.typeHelper;
+import static com.testvagrant.stepdefs.helpers.UploadHelper.uploadHelper;
 
 public class Tavern {
 
@@ -44,7 +44,6 @@ public class Tavern {
         return this;
     }
 
-
     void serve(WebElement element) {
         this.element = element;
         int eventValue = getEventValue(event.getEventCode());
@@ -58,8 +57,34 @@ public class Tavern {
             case SELECT:
                 serveSelect();
                 break;
+            case UPLOAD:
+                serveUpload();
+                break;
         }
+    }
 
+    void serve(By targetBy) {
+        this.by = targetBy;
+        int eventValue = getEventValue(event.getEventCode());
+        switch (eventLookup().load().getEvent(eventValue)) {
+            case ASSERT:
+                serveAssert();
+                break;
+            case SELECT:
+                serveSelect();
+                break;
+            case UPLOAD:
+                serveUpload();
+                break;
+        }
+    }
+
+    private void serveUpload() {
+        switch (event.getEventCode()) {
+            case UPLOAD_CODE:
+                uploadHelper(driver).onElement(element).selectFilePathWith(value);
+                break;
+        }
     }
 
     private void serveClick() {
@@ -77,20 +102,6 @@ public class Tavern {
         switch (event.getEventCode()) {
             case SELECT_DROPDOWN_TEXT_CODE:
                 selectHelper(driver).onElement(element).selectText(value);
-                break;
-
-        }
-    }
-
-    public void serve(By targetBy) {
-        this.by = targetBy;
-        int eventValue = getEventValue(event.getEventCode());
-        switch (eventLookup().load().getEvent(eventValue)) {
-            case ASSERT:
-                serveAssert();
-                break;
-            case SELECT:
-                serveSelect();
                 break;
         }
     }
@@ -112,7 +123,6 @@ public class Tavern {
         }
     }
 
-
     private void serveType() {
         switch (event.getEventCode()) {
             case TYPE_CODE:
@@ -120,7 +130,6 @@ public class Tavern {
                 break;
         }
     }
-
 
     private int getEventValue(String event) {
         return Integer.valueOf(event, 2);

@@ -22,4 +22,5 @@ public interface EventCodes {
     String CLICK_CODE = "10011";
     String DOUBLE_CLICK_CODE = "10100";
     String SELECT_DROPDOWN_TEXT_CODE = "10101";
+    String UPLOAD_CODE = "10110";
 }
