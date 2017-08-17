@@ -44,5 +44,6 @@ public class EventLookup {
         eventsMap.put(19,Events.CLICK);
         eventsMap.put(20,Events.CLICK);
         eventsMap.put(21,Events.SELECT);
+        eventsMap.put(22,Events.UPLOAD);
     }
 }
