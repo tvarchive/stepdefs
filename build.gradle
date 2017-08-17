@@ -17,7 +17,7 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'io.appium:java-client:4.0.0'
-    compile('com.testvagrant.optimus-commons:optimus-commons:1.0.1')
+    compile('com.testvagrant.optimus-commons:optimus-commons:1.0.3')
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0.pr4'
     compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.0.pr4'
     compile group: 'org.apache.poi', name: 'poi', version: '3.16'
@@ -48,7 +48,7 @@ signing {
 
 group = "com.testvagrant.stepdefs"
 archivesBaseName = "stepdefs"
-version = "1.0.2"
+version = "1.0.3"
 
 uploadArchives {
     repositories {
@@ -68,12 +68,12 @@ uploadArchives {
                 packaging 'jar'
                 // optionally artifactId can be defined here
                 description 'Generic step defs for cucumber jvm implementation'
-                url 'https://bitbucket.org/testvagrant/stepdefs'
+                url 'https://github.com/testvagrant/stepdefs'
 
                 scm {
-                    connection 'scm:git@bitbucket.org:testvagrant/stepdefs.git'
+                    connection 'scm:https://github.com/testvagrant/stepdefs.git'
 //                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
-                    url 'https://bitbucket.org/testvagrant/stepdefs'
+                    url 'https://github.com/testvagrant/stepdefs'
                 }
 
                 licenses {
