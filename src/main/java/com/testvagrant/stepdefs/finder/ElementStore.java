@@ -17,13 +17,14 @@ import static com.testvagrant.stepdefs.utils.ExcelToObjectConverter.converter;
 import static com.testvagrant.stepdefs.utils.LocatorsFileFormat.locatorsFF;
 
 public class ElementStore {
+    private static App app;
     private boolean fileFound;
     private String filePath;
     private String screenName;
     private String appName;
     private String fileName;
     private String fileExtension;
-    private static App app;
+
     private ElementStore() {
         this.appName = getAppName();
     }
@@ -40,13 +41,13 @@ public class ElementStore {
     }
 
     public Element find(String fieldName) throws IOException {
-        Element foundElement =null;
+        Element foundElement = null;
         List<Element> elements = getApp().getElements();
         Optional<Element> first = elements.stream()
                 .filter(element -> element.getElementName().equalsIgnoreCase(fieldName)).findFirst();
-        if(first.isPresent()) {
+        if (first.isPresent()) {
             foundElement = first.get();
-            if(foundElement.getReferTo()!=null && foundElement.getReferTo().length()>0) {
+            if (foundElement.getReferTo() != null && foundElement.getReferTo().length() > 0) {
                 return findElementByReference(foundElement);
             }
         } else {
@@ -56,18 +57,20 @@ public class ElementStore {
     }
 
 
-    private Element findElementByReference(Element element) throws  IOException {
+    private Element findElementByReference(Element element) throws IOException {
         read("CommonElements");
         return find(element.getReferTo());
     }
 
     private App getApp() throws InvalidElementsFormatException, IOException, SheetNotFoundException {
         switch (getFileFormat()) {
-            case ELEMENTS:case JSON:
+            case ELEMENTS:
+            case JSON:
                 String appJson = getAppJson(fileName);
                 app = new Gson().fromJson(appJson, App.class);
                 break;
-            case XLS:case XLSX:
+            case XLS:
+            case XLSX:
                 app = converter(appName).withExtension(getFileExtension()).convert(screenName);
                 break;
         }
@@ -76,15 +79,17 @@ public class ElementStore {
     }
 
     private String getFileName() {
-        String fileName =null;
+        String fileName = null;
         switch (getFileFormat()) {
-            case ELEMENTS:case JSON:
-                fileName = getElementsFileRelativePath(new File(System.getProperty("user.dir") + "/src/test/resources/elements/"+appName));
-                if(fileName==null) {
-                    throw new ElementsFileNotFoundException(appName,screenName,fileExtension);
+            case ELEMENTS:
+            case JSON:
+                fileName = getElementsFileRelativePath(new File(System.getProperty("user.dir") + "/src/test/resources/elements/" + appName));
+                if (fileName == null) {
+                    throw new ElementsFileNotFoundException(appName, screenName, fileExtension);
                 }
                 break;
-            case XLS:case XLSX:
+            case XLS:
+            case XLSX:
                 fileName = appName;
                 break;
         }
@@ -92,23 +97,23 @@ public class ElementStore {
     }
 
     private String formatAppName(String appName) {
-        if(appName.contains("apk")||appName.contains("ipa")||appName.contains("app")) {
-            return appName.substring(0,appName.indexOf(".")).toLowerCase();
+        if (appName.contains("apk") || appName.contains("ipa") || appName.contains("app")) {
+            return appName.substring(0, appName.indexOf(".")).toLowerCase();
         }
         return appName.toLowerCase();
     }
 
     private String getElementsFileRelativePath(File file) {
-        if(file.exists() && file.isDirectory() && !fileFound) {
+        if (file.exists() && file.isDirectory() && !fileFound) {
             File[] jsons = file.listFiles();
-            for(File json : jsons) {
-                if(!json.isDirectory()) {
-                    fileFound = json.getName().equalsIgnoreCase(screenName+getFileExtension());
-                    if(fileFound) {
+            for (File json : jsons) {
+                if (!json.isDirectory()) {
+                    fileFound = json.getName().equalsIgnoreCase(screenName + getFileExtension());
+                    if (fileFound) {
                         String absPath = json.getPath();
                         try {
-                            int index = absPath.indexOf("/elements/" + appName);
-                            filePath = absPath.substring(index,absPath.length());
+                            int index = absPath.indexOf(File.separator + "elements" + File.separator + appName);
+                            filePath = absPath.substring(index, absPath.length());
                         } catch (Exception e) {
                             throw new ElementsFolderNotFoundException(appName);
                         }
@@ -117,7 +122,7 @@ public class ElementStore {
                     }
                 } else {
                     String val = getElementsFileRelativePath(json);
-                    if(val!=null) {
+                    if (val != null) {
                         break;
                     }
                 }
@@ -142,7 +147,7 @@ public class ElementStore {
     private String getAppName() {
         StepDefsConfiguration stepDefsConfiguration = new ConfigParser().getConfiguration();
         String elementsFolderName = stepDefsConfiguration.getElementsFolderName();
-        if(elementsFolderName==null) {
+        if (elementsFolderName == null) {
             throw new MissingElementsFolderNameException();
         }
         return elementsFolderName;
@@ -150,19 +155,20 @@ public class ElementStore {
 
 
     private void throwRelevantException(String fieldName) throws InvalidElementsFormatException, ElementNotPresentException {
-        String keyWord =null;
+        String keyWord = null;
         switch (getFileFormat()) {
             case JSON:
                 keyWord = "json file";
                 break;
             case ELEMENTS:
-                keyWord="elements file";
+                keyWord = "elements file";
                 break;
-            case XLS:case XLSX:
-                keyWord="excel sheet";
+            case XLS:
+            case XLSX:
+                keyWord = "excel sheet";
                 break;
         }
-        throw new ElementNotPresentException(String.format("Element %s is not found in %s %s",fieldName,keyWord,screenName));
+        throw new ElementNotPresentException(String.format("Element %s is not found in %s %s", fieldName, keyWord, screenName));
     }
 
     public String getAppJson(String name) {
