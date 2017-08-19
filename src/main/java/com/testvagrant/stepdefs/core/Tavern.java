@@ -60,6 +60,9 @@ public class Tavern {
             case UPLOAD:
                 serveUpload();
                 break;
+            case ASSERT:
+                serveAssert();
+                break;
         }
     }
 
@@ -109,13 +112,13 @@ public class Tavern {
     private void serveAssert() {
         switch (event.getEventCode()) {
             case ASSERT_IS_VISIBLE_CODE:
-                assertHelper(driver).isTextDisplayed(by, value);
+                assertHelper(driver).isTextDisplayed(element, value);
                 break;
             case ASSERT_IS_NOT_VISIBLE_CODE:
-                assertHelper(driver).isTextNotDisplayed(by, value);
+                assertHelper(driver).isTextNotDisplayed(element, value);
                 break;
             case ASSERT_IS_ENABLED_CODE:
-                assertHelper(driver).isEnabled(by);
+                assertHelper(driver).isEnabled(element);
                 break;
             case ASSERT_IS_NOT_ENABLED_CODE:
                 assertHelper(driver).isNotEnabled(by);
