@@ -21,7 +21,7 @@ public class AssertHelper extends ActionHelper {
 
     public void isTextDisplayed(WebElement element, String text) {
         waitForElementToBeVisible(element);
-        Assert.assertEquals("Text not present ", text, element.getText());
+        Assert.assertTrue("Text not present ",element.getText().contains(text));
     }
 
     public void isTextDisplayed(By by, String text) {
@@ -31,7 +31,7 @@ public class AssertHelper extends ActionHelper {
 
     public void isTextNotDisplayed(WebElement element, String text) {
         waitForElementToBeVisible(element);
-        Assert.assertNotEquals("Text is present ", text, element.getText());
+        Assert.assertFalse("Text is present ",element.getText().contains(text));
     }
 
     public void isTextNotDisplayed(By by, String text) {
