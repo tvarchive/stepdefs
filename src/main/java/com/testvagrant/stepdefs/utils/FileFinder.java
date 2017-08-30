@@ -57,7 +57,7 @@ public class FileFinder {
             assert files != null;
             for(File file : files) {
                 if(!file.isDirectory()) {
-                    fileFound = file.getName().contains(fileName) && file.getName().endsWith(fileExtensionToSearch);
+                    fileFound = file.getName().equals(fileName + fileExtensionToSearch);
                     if(fileFound) {
                         fileToSearch = file;
                         break;
