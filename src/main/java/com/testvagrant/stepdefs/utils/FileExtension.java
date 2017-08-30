@@ -8,6 +8,7 @@ public enum FileExtension {
     SQL(".sql"),
     FEATURE(".feature"),
     EXCEL(".xls"),
+    ELEMENTS(".elements"),
     YAML(".yaml");
 
 
