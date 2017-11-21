@@ -8,5 +8,5 @@ import org.openqa.selenium.By;
  */
 public interface WaitFor {
 
-    void waitForElement(AppiumDriver driver, By Locator);
+    void waitForElement(AppiumDriver driver, By Locator, int timeout);
 }

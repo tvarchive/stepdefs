@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class WaitForPresence implements WaitFor {
 
     @Override
-    public void waitForElement(AppiumDriver driver, By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+    public void waitForElement(AppiumDriver driver, By locator, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 }
