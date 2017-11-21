@@ -15,13 +15,11 @@ public class ActionHelper {
 
     protected AppiumDriver driver;
     private WebDriverWait webDriverWait;
-//    TouchAction touchAction;
 
 
     public ActionHelper(AppiumDriver driver) {
         this.driver = driver;
         webDriverWait = new WebDriverWait(driver, 30);
-//        touchAction = new TouchAction((MobileDriver) driver);
     }
 
 
