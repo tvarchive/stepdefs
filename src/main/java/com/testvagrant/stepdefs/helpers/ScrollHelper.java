@@ -1,7 +1,10 @@
 package com.testvagrant.stepdefs.helpers;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
 import org.openqa.selenium.*;
+
+import java.time.Duration;
 
 
 public class ScrollHelper extends ActionHelper {
@@ -123,15 +126,29 @@ public class ScrollHelper extends ActionHelper {
     }
 
     private void down() {
-        driver.swipe(5, getHeight() * 2 / 3, 5, getHeight() / 3, 1000);
+//        driver.swipe(5, getHeight() * 2 / 3, 5, getHeight() / 3, 1000);
+        new TouchAction(driver).longPress(5, getHeight() * 2 / 3)
+                .waitAction(Duration.ofMillis(1000))
+                .moveTo(5, getHeight() / 3)
+                .release().perform();
     }
 
     private void up() {
-        driver.swipe(5, getHeight() / 3, 5, getHeight() * 2 / 3, 1000);
+//        driver.swipe(5, getHeight() / 3, 5, getHeight() * 2 / 3, 1000);
+        new TouchAction(driver).longPress(5, getHeight() / 3)
+                .waitAction(Duration.ofMillis(1000))
+                .moveTo(5, getHeight() * 2 / 3)
+                .release().perform();
+
     }
 
     private void swipe(int startX, int startY, int endX, int endY) {
-        driver.swipe(startX, startY, endX, endY, 1000);
+//        driver.swipe(startX, startY, endX, endY, 1000);
+        new TouchAction(driver).longPress(startX, startY)
+                .waitAction(Duration.ofMillis(1000))
+                .moveTo(endX, endY)
+                .release().perform();
+
     }
 
     private boolean isTextPresent(By by, String text) {

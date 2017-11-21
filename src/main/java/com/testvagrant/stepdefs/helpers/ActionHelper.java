@@ -1,6 +1,8 @@
 package com.testvagrant.stepdefs.helpers;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileDriver;
+import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -13,11 +15,13 @@ public class ActionHelper {
 
     protected AppiumDriver driver;
     private WebDriverWait webDriverWait;
-    TouchAction touchAction;
-    ActionHelper(AppiumDriver driver) {
+//    TouchAction touchAction;
+
+
+    public ActionHelper(AppiumDriver driver) {
         this.driver = driver;
-        webDriverWait = new WebDriverWait(driver,30);
-        touchAction = new TouchAction(driver);
+        webDriverWait = new WebDriverWait(driver, 30);
+//        touchAction = new TouchAction((MobileDriver) driver);
     }
 
 
@@ -51,7 +55,7 @@ public class ActionHelper {
 
 
     int getInt(String percentage) {
-        String strWithoutPercentage = percentage.replaceAll("\\%","").trim();
+        String strWithoutPercentage = percentage.replaceAll("\\%", "").trim();
         return Integer.parseInt(strWithoutPercentage);
     }
 
@@ -63,7 +67,7 @@ public class ActionHelper {
                 webDriverWait.until(ExpectedConditions.presenceOfElementLocated(by));
             }
             WebElement element = driver.findElement(by);
-            return element.getSize().getHeight()>0 && element.getSize().getWidth()>0;
+            return element.getSize().getHeight() > 0 && element.getSize().getWidth() > 0;
         } catch (NoSuchElementException e) {
             return false;
         }
@@ -72,10 +76,10 @@ public class ActionHelper {
     boolean isElementVisible(By by) {
         System.out.println("Came here for visibility");
         try {
-            webDriverWait = new WebDriverWait(driver,30);
+            webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(driver.findElement(by)));
             WebElement element = driver.findElement(by);
-            return element.getSize().getHeight()>0 && element.getSize().getWidth()>0;
+            return element.getSize().getHeight() > 0 && element.getSize().getWidth() > 0;
         } catch (NoSuchElementException e) {
             return false;
         }

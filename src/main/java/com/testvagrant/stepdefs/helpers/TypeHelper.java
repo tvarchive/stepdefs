@@ -6,9 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class TypeHelper extends ActionHelper {
 
-    private AppiumDriver driver;
     private WebElement element;
-    private String value;
+
     private TypeHelper(AppiumDriver driver) {
         super(driver);
     }
@@ -18,7 +17,7 @@ public class TypeHelper extends ActionHelper {
     }
 
     public TypeHelper onElement(WebElement element) {
-        this.element= element;
+        this.element = element;
         return this;
     }
 

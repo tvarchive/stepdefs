@@ -2,9 +2,12 @@ package com.testvagrant.stepdefs.helpers;
 
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
 import org.openqa.selenium.WebElement;
 
-public class SwipeHelper extends ActionHelper{
+import java.time.Duration;
+
+public class SwipeHelper extends ActionHelper {
 
     private SwipeHelper(AppiumDriver driver) {
         super(driver);
@@ -38,11 +41,21 @@ public class SwipeHelper extends ActionHelper{
     }
 
     private void left() {
-        driver.swipe(getWidth() / 10, getHeight() / 2, getWidth() * 9 / 10, getHeight() / 2, 1000);
+//        driver.swipe(getWidth() / 10, getHeight() / 2, getWidth() * 9 / 10, getHeight() / 2, 1000);
+        new TouchAction(driver).longPress(getWidth() / 10, getHeight() / 2)
+                .waitAction(Duration.ofMillis(1000))
+                .moveTo(getWidth() * 9 / 10, getHeight() / 2)
+                .release().perform();
+
     }
 
     private void right() {
-        driver.swipe(getWidth() * 9 / 10, getHeight() / 2, getWidth() / 10, getHeight() / 2, 1000);
+//        driver.swipe(getWidth() * 9 / 10, getHeight() / 2, getWidth() / 10, getHeight() / 2, 1000);
+        new TouchAction(driver).longPress(getWidth() * 9 / 10, getHeight() / 2)
+                .waitAction(Duration.ofMillis(1000))
+                .moveTo(getWidth() / 10, getHeight() / 2)
+                .release().perform();
+
     }
 
 
