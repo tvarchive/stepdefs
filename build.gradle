@@ -44,56 +44,56 @@ signing {
     sign configurations.archives
 }
 
-group = "com.testvagrant.stepdefs"
-archivesBaseName = "stepdefs"
-version = "1.0.5"
+//group = "com.testvagrant.stepdefs"
+//archivesBaseName = "stepdefs"
+//version = "1.0.5"
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            pom.project {
-                name 'Example Application'
-                packaging 'jar'
-                // optionally artifactId can be defined here
-                description 'Generic step defs for cucumber jvm implementation'
-                url 'https://github.com/testvagrant/stepdefs'
-
-                scm {
-                    connection 'scm:https://github.com/testvagrant/stepdefs.git'
-                    url 'https://github.com/testvagrant/stepdefs'
-                }
-
-                licenses {
-                    license {
-                        name 'The Apache License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'sukesh'
-                        name 'Sukesh Kumar'
-                        email 'sukesh@testvagrant.com'
-                    }
-
-                    developer {
-                        id 'KrishnanandB'
-                        name 'Krishnanand B'
-                        email 'krishnanand@testvagrant.com'
-                    }
-                }
-            }
-        }
-    }
-}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//
+//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                authentication(userName: ossrhUsername, password: ossrhPassword)
+//            }
+//
+//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                authentication(userName: ossrhUsername, password: ossrhPassword)
+//            }
+//
+//            pom.project {
+//                name 'Example Application'
+//                packaging 'jar'
+//                // optionally artifactId can be defined here
+//                description 'Generic step defs for cucumber jvm implementation'
+//                url 'https://github.com/testvagrant/stepdefs'
+//
+//                scm {
+//                    connection 'scm:https://github.com/testvagrant/stepdefs.git'
+//                    url 'https://github.com/testvagrant/stepdefs'
+//                }
+//
+//                licenses {
+//                    license {
+//                        name 'The Apache License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id 'sukesh'
+//                        name 'Sukesh Kumar'
+//                        email 'sukesh@testvagrant.com'
+//                    }
+//
+//                    developer {
+//                        id 'KrishnanandB'
+//                        name 'Krishnanand B'
+//                        email 'krishnanand@testvagrant.com'
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
 
