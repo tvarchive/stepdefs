@@ -42,7 +42,7 @@ public class SwipeHelper extends ActionHelper {
 
     private void left() {
 //        driver.swipe(getWidth() / 10, getHeight() / 2, getWidth() * 9 / 10, getHeight() / 2, 1000);
-        new TouchAction(driver).longPress(getWidth() / 10, getHeight() / 2)
+        new TouchAction(driver).press(getWidth() / 10, getHeight() / 2)
                 .waitAction(Duration.ofMillis(1000))
                 .moveTo(getWidth() * 9 / 10, getHeight() / 2)
                 .release().perform();
@@ -51,7 +51,7 @@ public class SwipeHelper extends ActionHelper {
 
     private void right() {
 //        driver.swipe(getWidth() * 9 / 10, getHeight() / 2, getWidth() / 10, getHeight() / 2, 1000);
-        new TouchAction(driver).longPress(getWidth() * 9 / 10, getHeight() / 2)
+        new TouchAction(driver).press(getWidth() * 9 / 10, getHeight() / 2)
                 .waitAction(Duration.ofMillis(1000))
                 .moveTo(getWidth() / 10, getHeight() / 2)
                 .release().perform();

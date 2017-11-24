@@ -127,7 +127,7 @@ public class ScrollHelper extends ActionHelper {
 
     private void down() {
 //        driver.swipe(5, getHeight() * 2 / 3, 5, getHeight() / 3, 1000);
-        new TouchAction(driver).longPress(5, getHeight() * 2 / 3)
+        new TouchAction(driver).press(5, getHeight() * 2 / 3)
                 .waitAction(Duration.ofMillis(1000))
                 .moveTo(5, getHeight() / 3)
                 .release().perform();
@@ -135,7 +135,7 @@ public class ScrollHelper extends ActionHelper {
 
     private void up() {
 //        driver.swipe(5, getHeight() / 3, 5, getHeight() * 2 / 3, 1000);
-        new TouchAction(driver).longPress(5, getHeight() / 3)
+        new TouchAction(driver).press(5, getHeight() / 3)
                 .waitAction(Duration.ofMillis(1000))
                 .moveTo(5, getHeight() * 2 / 3)
                 .release().perform();
@@ -144,7 +144,7 @@ public class ScrollHelper extends ActionHelper {
 
     private void swipe(int startX, int startY, int endX, int endY) {
 //        driver.swipe(startX, startY, endX, endY, 1000);
-        new TouchAction(driver).longPress(startX, startY)
+        new TouchAction(driver).press(startX, startY)
                 .waitAction(Duration.ofMillis(1000))
                 .moveTo(endX, endY)
                 .release().perform();

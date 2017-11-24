@@ -1,5 +1,5 @@
-group 'com.testvagrant.optimus'
-version '1.2-SNAPSHOT'
+group 'com.testvagrant.stepdefs'
+version '1.0.6-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'groovy'
