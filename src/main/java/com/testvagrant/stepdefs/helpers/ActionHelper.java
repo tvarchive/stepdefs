@@ -1,11 +1,7 @@
 package com.testvagrant.stepdefs.helpers;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.PerformsTouchActions;
-import io.appium.java_client.TouchAction;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -58,7 +54,6 @@ public class ActionHelper {
     }
 
     boolean isElementPresent(By by) {
-        System.out.println("Came here");
         try {
             synchronized (this) {
                 webDriverWait = new WebDriverWait(driver, 30);
@@ -66,19 +61,18 @@ public class ActionHelper {
             }
             WebElement element = driver.findElement(by);
             return element.getSize().getHeight() > 0 && element.getSize().getWidth() > 0;
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     boolean isElementVisible(By by) {
-        System.out.println("Came here for visibility");
         try {
             webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(driver.findElement(by)));
             WebElement element = driver.findElement(by);
             return element.getSize().getHeight() > 0 && element.getSize().getWidth() > 0;
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
             return false;
         }
     }
