@@ -48,4 +48,8 @@ public class AssertHelper extends ActionHelper {
         Assert.assertEquals("Element is Visible", false, isElementPresent(by));
     }
 
+    public void isTextNull(By by) {
+        new WaitControl(driver).waitFor("presence", by);
+        Assert.assertEquals("Text is not null", null, driver.findElement(by).getText());
+    }
 }

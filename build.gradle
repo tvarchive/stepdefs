@@ -40,14 +40,17 @@ artifacts {
     archives javadocJar, sourcesJar
 }
 
+/*
 signing {
     sign configurations.archives
 }
+*/
 
 group = "com.testvagrant.stepdefs"
 archivesBaseName = "stepdefs"
 version = "1.0.7"
 
+/*
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -96,4 +99,4 @@ uploadArchives {
         }
     }
 }
-
+*/

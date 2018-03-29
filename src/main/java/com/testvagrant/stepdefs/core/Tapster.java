@@ -68,8 +68,6 @@ public class Tapster {
         return new Tapster();
     }
 
-
-
     public Tapster serve() throws NoSuchEventException, OptimusException, IOException {
         Event event = eventFinder().findEvent(action);
         Events events = eventLookup().load().getEvent(Integer.valueOf(event.getEventCode(), 2));
