@@ -18,6 +18,7 @@ public class AssertDictionary extends EventDictionary {
     private List<String> assertIsTextNotPresentDictionary = new ArrayList<>();
     private List<String> assertIsEnabledDictionary = new ArrayList<>();
     private List<String> assertIsNotEnabledDictionary = new ArrayList<>();
+    private List<String> assetIsTextNullDictionary = new ArrayList<>();
     private Map<Event, List<String>> assertMap = new HashMap<>();
 
     public AssertDictionary() {
@@ -34,12 +35,14 @@ public class AssertDictionary extends EventDictionary {
         initAssertIsNotEnabledDictionary();
         initAssertIsVisibleDictionary();
         initAssertIsNotVisibleDictionary();
+        initAssertIsTextNullDictionary();
         assertMap.put(Assert.ASSERT_IS_TEXT_DISPLAYED, assertIsTextPresentDictionary);
         assertMap.put(Assert.ASSERT_IS_TEXT_NOT_DISPLAYED, assertIsTextNotPresentDictionary);
         assertMap.put(Assert.ASSERT_IS_ENABLED, assertIsEnabledDictionary);
         assertMap.put(Assert.ASSERT_IS_NOT_ENABLED, assertIsNotEnabledDictionary);
         assertMap.put(Assert.ASSERT_IS_VISIBLE, assertIsVisibleDictionary);
         assertMap.put(Assert.ASSERT_IS_NOT_VISIBLE, assertIsNotVisibleDictionary);
+        assertMap.put(Assert.ASSERT_IS_TEXT_NULL, assetIsTextNullDictionary);
         return this;
     }
 
@@ -78,8 +81,18 @@ public class AssertDictionary extends EventDictionary {
         assertIsTextPresentDictionary.add(("text displayed"));
     }
 
+    private void initAssertIsTextNullDictionary() {
+        assetIsTextNullDictionary.add("null");
+        assetIsTextNullDictionary.add("text-null");
+        assetIsTextNullDictionary.add("text null");
+        assetIsTextNullDictionary.add(("text is null"));
+        assetIsTextNullDictionary.add(("text is empty"));
+        assetIsTextNullDictionary.add(("text is not present"));
+    }
+
     public Event search(String action) {
         return search(assertMap, action);
     }
+
 
 }
