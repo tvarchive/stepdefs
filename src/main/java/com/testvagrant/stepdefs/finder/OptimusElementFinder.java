@@ -35,17 +35,16 @@ public class OptimusElementFinder {
         return new OptimusElementFinder(driver);
     }
 
-
-    public WebElement findWebElement(String appConsumer, String screenName, String fieldName) throws OptimusException, IOException {
+    public WebElement findWebElement(String appConsumer, String screenName, String fieldName, String value, int index) throws OptimusException, IOException {
         Element appElement = getAppElement(appConsumer, screenName, fieldName);
-        By locator = getLocatorType(appElement);
+        By locator = getLocatorType(appElement, value);
         new WaitControl(driver).waitFor(appElement.getWaitFor(), locator);
-        return getElement(locator);
+        return getElement(locator, index);
     }
 
-    public By findBy(String appConsumer, String screenName, String fieldName) throws OptimusException, IOException {
+    public By findBy(String appConsumer, String screenName, String fieldName, String value) throws OptimusException, IOException {
         Element appElement = getAppElement(appConsumer, screenName, fieldName);
-        return getLocatorType(appElement);
+        return getLocatorType(appElement, value);
     }
 
     public Element getAppElement(String appConsumer, String screenName, String fieldName) throws OptimusException, IOException {
@@ -56,20 +55,23 @@ public class OptimusElementFinder {
         return elementStore(appName).read(screenName).find(fieldName);
     }
 
-    private By getLocatorType(Element appElement) {
-        return identifierMap.get(appElement.getIdentifier()).getLocator(appElement.getValue());
+    private By getLocatorType(Element appElement, String value) {
+        String eleValue = appElement.getValue();
+        if (appElement.getValue().contains("text") && appElement.getValue().contains("%s"))
+            eleValue = eleValue.replace("%s", value);
+        return identifierMap.get(appElement.getIdentifier()).getLocator(eleValue);
     }
 
-
-    private WebElement getElement(By locator) {
+    private WebElement getElement(By locator, int index) {
+        index = index > 0 ? index - 1 : 0;
         try {
             WebDriverWait wait = new WebDriverWait(driver, 30);
-            return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            return (WebElement) driver.findElements(locator).get(index);
         } catch (WebDriverException e) {
             Thread.currentThread().interrupt();
-            return driver.findElement(locator);
+            return (WebElement) driver.findElements(locator).get(index);
         }
     }
-
 
 }

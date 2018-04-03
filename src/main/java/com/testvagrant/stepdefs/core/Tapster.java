@@ -1,6 +1,5 @@
 package com.testvagrant.stepdefs.core;
 
-
 import com.testvagrant.commons.exceptions.OptimusException;
 import com.testvagrant.stepdefs.core.events.Event;
 import com.testvagrant.stepdefs.core.events.Events;
@@ -27,9 +26,9 @@ public class Tapster {
     private String action;
     private String element;
     private String value;
+    private int index;
 
     private Tapster() {
-
     }
 
     public Tapster useDriver(AppiumDriver driver) {
@@ -63,6 +62,10 @@ public class Tapster {
         return this;
     }
 
+    public Tapster withIndex(int index) {
+        this.index = index;
+        return this;
+    }
 
     public static Tapster tapster() {
         return new Tapster();
@@ -72,14 +75,13 @@ public class Tapster {
         Event event = eventFinder().findEvent(action);
         Events events = eventLookup().load().getEvent(Integer.valueOf(event.getEventCode(), 2));
         if (ASSERT.equals(events) || SCROLL.equals(events)) {
-            By targetBy = optimusElementFinder(driver).findBy(consumer, screen, element);
+            By targetBy = optimusElementFinder(driver).findBy(consumer, screen, element, value);
             tavern(driver).event(event).value(value).serve(targetBy);
         } else {
-            WebElement webElement = optimusElementFinder(driver).findWebElement(consumer, screen, element);
+            WebElement webElement = optimusElementFinder(driver).findWebElement(consumer, screen, element, value, index);
             tavern(driver).event(event).value(value).serve(webElement);
         }
         return this;
     }
-
 
 }
