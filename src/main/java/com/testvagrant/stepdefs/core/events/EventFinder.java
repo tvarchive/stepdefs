@@ -1,6 +1,5 @@
 package com.testvagrant.stepdefs.core.events;
 
-
 import com.testvagrant.stepdefs.dictionary.events.EventDictionary;
 import com.testvagrant.stepdefs.exceptions.NoSuchEventException;
 
@@ -8,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.testvagrant.stepdefs.dictionary.events.AssertDictionary.assertDictionary;
+import static com.testvagrant.stepdefs.dictionary.events.NavigationDictionary.navigationDictionary;
 import static com.testvagrant.stepdefs.dictionary.events.ScrollDictionary.scrollDictionary;
 import static com.testvagrant.stepdefs.dictionary.events.SlideDictionary.slideDictionary;
 import static com.testvagrant.stepdefs.dictionary.events.SwipeDictionary.swipeDictionary;
@@ -27,6 +27,7 @@ public class EventFinder {
         eventDictionaries.add(tapDictionary());
         eventDictionaries.add(typeDictionary());
         eventDictionaries.add(assertDictionary());
+        eventDictionaries.add(navigationDictionary());
     }
 
     public static EventFinder eventFinder() {
@@ -34,16 +35,16 @@ public class EventFinder {
     }
 
     public Event findEvent(String action) throws NoSuchEventException {
-        if(event==null && eventDictionaries.size()>0) {
+        if (event == null && eventDictionaries.size() > 0) {
             event = eventDictionaries.get(0).open().search(action);
-            if(event==null) {
+            if (event == null) {
                 eventDictionaries.remove(0);
                 findEvent(action);
-            }else  {
+            } else {
                 return event;
             }
         }
-        if(event ==null)
+        if (event == null)
             throw new NoSuchEventException(action);
         else
             return event;

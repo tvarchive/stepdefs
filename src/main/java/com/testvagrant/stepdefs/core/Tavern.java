@@ -1,6 +1,5 @@
 package com.testvagrant.stepdefs.core;
 
-
 import com.testvagrant.stepdefs.core.events.Event;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
@@ -9,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import static com.testvagrant.stepdefs.core.events.EventCodes.*;
 import static com.testvagrant.stepdefs.core.events.EventLookup.eventLookup;
 import static com.testvagrant.stepdefs.helpers.AssertHelper.assertHelper;
+import static com.testvagrant.stepdefs.helpers.NavigationHelper.navigator;
 import static com.testvagrant.stepdefs.helpers.ScrollHelper.scroller;
 import static com.testvagrant.stepdefs.helpers.SlideHelper.slider;
 import static com.testvagrant.stepdefs.helpers.SwipeHelper.swiper;
@@ -45,7 +45,6 @@ public class Tavern {
         this.value = value;
         return this;
     }
-
 
     void serve(WebElement element) {
         this.element = element;
@@ -109,7 +108,6 @@ public class Tavern {
         }
     }
 
-
     private void serveTaps() {
         switch (event.getEventCode()) {
             case TAP_CODE:
@@ -171,10 +169,25 @@ public class Tavern {
         }
     }
 
+    void serveNavigation() {
+        switch (event.getEventCode()) {
+            case NAVIGATE_BACK_CODE:
+                navigator(driver).navigateBack();
+                break;
+            case NAVIGATE_FORWARD_CODE:
+                navigator(driver).navigateForward();
+                break;
+            case REFRESH_CODE:
+                navigator(driver).refresh();
+                break;
+            case HIDE_KEYBOARD_CODE:
+                navigator(driver).hideKeyBoard();
+                break;
+        }
+    }
 
     private int getEventValue(String event) {
         return Integer.valueOf(event, 2);
     }
-
 
 }

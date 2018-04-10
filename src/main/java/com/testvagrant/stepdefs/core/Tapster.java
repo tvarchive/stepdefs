@@ -15,6 +15,7 @@ import static com.testvagrant.stepdefs.core.Tavern.tavern;
 import static com.testvagrant.stepdefs.core.events.EventFinder.eventFinder;
 import static com.testvagrant.stepdefs.core.events.EventLookup.eventLookup;
 import static com.testvagrant.stepdefs.core.events.Events.ASSERT;
+import static com.testvagrant.stepdefs.core.events.Events.NAVIGATION;
 import static com.testvagrant.stepdefs.core.events.Events.SCROLL;
 import static com.testvagrant.stepdefs.finder.OptimusElementFinder.optimusElementFinder;
 
@@ -77,11 +78,12 @@ public class Tapster {
         if (ASSERT.equals(events) || SCROLL.equals(events)) {
             By targetBy = optimusElementFinder(driver).findBy(consumer, screen, element, value);
             tavern(driver).event(event).value(value).serve(targetBy);
-        } else {
+        } else if (NAVIGATION.equals(events)) {
+            tavern(driver).event(event).serveNavigation();
+        }else {
             WebElement webElement = optimusElementFinder(driver).findWebElement(consumer, screen, element, value, index);
             tavern(driver).event(event).value(value).serve(webElement);
         }
         return this;
     }
-
 }
