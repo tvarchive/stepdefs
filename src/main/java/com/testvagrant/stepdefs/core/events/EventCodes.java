@@ -1,6 +1,5 @@
 package com.testvagrant.stepdefs.core.events;
 
-
 public interface EventCodes {
     String TAP_CODE = "00001";
     String DOUBLE_TAP_CODE = "00010";
@@ -21,5 +20,8 @@ public interface EventCodes {
     String SCROLL_LEFT_IN_ELEMENT_CODE = "10001";
     String SCROLL_RIGHT_IN_ELEMENT_CODE = "10010";
     String ASSERT_IS_TEXT_NULL_CODE = "10011";
-
+    String NAVIGATE_BACK_CODE = "10100";
+    String NAVIGATE_FORWARD_CODE = "10101";
+    String REFRESH_CODE = "10110";
+    String HIDE_KEYBOARD_CODE = "10111";
 }
