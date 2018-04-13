@@ -50,6 +50,6 @@ public class AssertHelper extends ActionHelper {
 
     public void isTextNull(By by) {
         new WaitControl(driver).waitFor("presence", by);
-        Assert.assertEquals("Text is not null", null, driver.findElement(by).getText());
+        Assert.assertEquals("Text is not null", "", driver.findElement(by).getText());
     }
 }
