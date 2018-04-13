@@ -83,6 +83,7 @@ public class AssertDictionary extends EventDictionary {
 
     private void initAssertIsTextNullDictionary() {
         assetIsTextNullDictionary.add("null");
+        assetIsTextNullDictionary.add("empty");
         assetIsTextNullDictionary.add("text-null");
         assetIsTextNullDictionary.add("text null");
         assetIsTextNullDictionary.add(("text is null"));
