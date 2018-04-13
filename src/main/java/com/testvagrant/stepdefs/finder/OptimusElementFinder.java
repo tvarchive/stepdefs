@@ -44,6 +44,8 @@ public class OptimusElementFinder {
 
     public By findBy(String appConsumer, String screenName, String fieldName, String value) throws OptimusException, IOException {
         Element appElement = getAppElement(appConsumer, screenName, fieldName);
+        By locator = getLocatorType(appElement, value);
+        new WaitControl(driver).waitFor(appElement.getWaitFor(), locator);
         return getLocatorType(appElement, value);
     }
 
