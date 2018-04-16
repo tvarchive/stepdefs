@@ -102,9 +102,6 @@ public class Tavern {
             case ASSERT_IS_NOT_VISIBLE_CODE:
                 assertHelper(driver).isNotDisplayed(by);
                 break;
-            case ASSERT_IS_TEXT_NULL_CODE:
-                assertHelper(driver).isTextNull(by);
-                break;
         }
     }
 

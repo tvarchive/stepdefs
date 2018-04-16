@@ -17,6 +17,7 @@ public class WaitControl {
         this.driver = driver;
         waitForMap.put("presence", new WaitForPresence());
         waitForMap.put("visibility", new WaitForVisibility());
+        waitForMap.put("inVisibility", new WaitForInVisibility());
         waitForMap.put("clickability", new WaitForClickability());
     }
 
@@ -26,6 +27,6 @@ public class WaitControl {
 
     private int getWaitTimeout() {
         int timeout = Commons.getOptimusConfiguration().getWebDriverWait();
-        return timeout<=1?30:timeout;
+        return timeout <= 1 ? 30 : timeout;
     }
 }
