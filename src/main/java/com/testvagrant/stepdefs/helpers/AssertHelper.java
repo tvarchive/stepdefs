@@ -22,7 +22,11 @@ public class AssertHelper extends ActionHelper {
 
     public void isTextDisplayed(By by, String text) {
         new WaitControl(driver).waitFor("presence", by);
-        Assert.assertEquals("Text not present ", text, driver.findElement(by).getText());
+
+        if (text.contains("empty") || text.contains("null"))
+            Assert.assertEquals("Text is not empty", "", driver.findElement(by).getText());
+        else
+            Assert.assertEquals("Text not present ", text, driver.findElement(by).getText());
     }
 
     public void isTextNotDisplayed(By by, String text) {
@@ -41,15 +45,12 @@ public class AssertHelper extends ActionHelper {
     }
 
     public void isDisplayed(By by) {
+        new WaitControl(driver).waitFor("presence", by);
         Assert.assertEquals("Element not visible", true, isElementPresent(by));
     }
 
     public void isNotDisplayed(By by) {
+        new WaitControl(driver).waitFor("inVisibility", by);
         Assert.assertEquals("Element is Visible", false, isElementPresent(by));
-    }
-
-    public void isTextNull(By by) {
-        new WaitControl(driver).waitFor("presence", by);
-        Assert.assertEquals("Text is not null", null, driver.findElement(by).getText());
     }
 }
