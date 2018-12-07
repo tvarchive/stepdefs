@@ -2,9 +2,14 @@ package com.testvagrant.stepdefs.helpers;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.*;
 
 import java.time.Duration;
+
+import static io.appium.java_client.touch.WaitOptions.waitOptions;
+import static io.appium.java_client.touch.offset.PointOption.point;
 
 
 public class ScrollHelper extends ActionHelper {
@@ -126,29 +131,24 @@ public class ScrollHelper extends ActionHelper {
     }
 
     private void down() {
-//        driver.swipe(5, getHeight() * 2 / 3, 5, getHeight() / 3, 1000);
-        new TouchAction(driver).press(5, getHeight() * 2 / 3)
-                .waitAction(Duration.ofMillis(1000))
-                .moveTo(5, getHeight() / 3)
+        new TouchAction(driver).press(point(5, getHeight() * 2 / 3))
+                .waitAction(waitOptions(Duration.ofMillis(1000)))
+                .moveTo(point(5, getHeight() / 3))
                 .release().perform();
     }
 
     private void up() {
-//        driver.swipe(5, getHeight() / 3, 5, getHeight() * 2 / 3, 1000);
-        new TouchAction(driver).press(5, getHeight() / 3)
-                .waitAction(Duration.ofMillis(1000))
-                .moveTo(5, getHeight() * 2 / 3)
+        new TouchAction(driver).press(point(5, getHeight() / 3))
+                .waitAction(waitOptions(Duration.ofMillis(1000)))
+                .moveTo(point(5, getHeight() * 2 / 3))
                 .release().perform();
-
     }
 
     private void swipe(int startX, int startY, int endX, int endY) {
-//        driver.swipe(startX, startY, endX, endY, 1000);
-        new TouchAction(driver).press(startX, startY)
-                .waitAction(Duration.ofMillis(1000))
-                .moveTo(endX, endY)
+        new TouchAction(driver).press(point(startX, startY))
+                .waitAction(waitOptions(Duration.ofMillis(1000)))
+                .moveTo(point(endX, endY))
                 .release().perform();
-
     }
 
     private boolean isTextPresent(By by, String text) {
