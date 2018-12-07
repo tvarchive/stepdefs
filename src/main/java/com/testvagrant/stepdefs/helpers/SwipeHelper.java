@@ -3,16 +3,20 @@ package com.testvagrant.stepdefs.helpers;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
+
+import static io.appium.java_client.touch.WaitOptions.waitOptions;
+import static io.appium.java_client.touch.offset.PointOption.point;
 
 public class SwipeHelper extends ActionHelper {
 
     private SwipeHelper(AppiumDriver driver) {
         super(driver);
     }
-
 
     public static SwipeHelper swiper(AppiumDriver driver) {
         return new SwipeHelper(driver);
@@ -41,22 +45,17 @@ public class SwipeHelper extends ActionHelper {
     }
 
     private void left() {
-//        driver.swipe(getWidth() / 10, getHeight() / 2, getWidth() * 9 / 10, getHeight() / 2, 1000);
-        new TouchAction(driver).press(getWidth() / 10, getHeight() / 2)
-                .waitAction(Duration.ofMillis(1000))
-                .moveTo(getWidth() * 9 / 10, getHeight() / 2)
+        new TouchAction(driver).press(point(getWidth() / 10, getHeight() / 2))
+                .waitAction(waitOptions(Duration.ofMillis(1000)))
+                .moveTo(point(getWidth() * 9 / 10, getHeight() / 2))
                 .release().perform();
-
     }
 
     private void right() {
-//        driver.swipe(getWidth() * 9 / 10, getHeight() / 2, getWidth() / 10, getHeight() / 2, 1000);
-        new TouchAction(driver).press(getWidth() * 9 / 10, getHeight() / 2)
-                .waitAction(Duration.ofMillis(1000))
-                .moveTo(getWidth() / 10, getHeight() / 2)
+        new TouchAction(driver).press(point(getWidth() * 9 / 10, getHeight() / 2))
+                .waitAction(waitOptions(Duration.ofMillis(1000)))
+                .moveTo(point(getWidth() / 10, getHeight() / 2))
                 .release().perform();
-
     }
-
 
 }

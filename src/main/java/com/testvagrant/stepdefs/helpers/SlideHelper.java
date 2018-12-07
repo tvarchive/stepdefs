@@ -6,6 +6,10 @@ import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
 
+import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
+import static io.appium.java_client.touch.offset.ElementOption.element;
+import static io.appium.java_client.touch.offset.PointOption.point;
+
 public class SlideHelper extends ActionHelper {
 
     private WebElement element;
@@ -15,11 +19,9 @@ public class SlideHelper extends ActionHelper {
         super(driver);
     }
 
-
     public static SlideHelper slider(AppiumDriver driver) {
         return new SlideHelper(driver);
     }
-
 
     public SlideHelper on(WebElement element) {
         this.element = element;
@@ -36,10 +38,11 @@ public class SlideHelper extends ActionHelper {
     private void moveSliderAccordingToSpecifiedPercentage(int xStartingPoint, int xEndingPoint, int yStartingAndEndingPoint, int slideByPercentage) {
         double slideFactor = (double) slideByPercentage / (double) 100;
         int pointToMoveTo = (int) ((xEndingPoint + offset) * slideFactor);
-//        touchAction = new TouchAction(driver);
         waitForElementToBeClickable(element);
-        new TouchAction(driver).longPress(element, xStartingPoint, yStartingAndEndingPoint, Duration.ofMillis(1000))
-                .moveTo(pointToMoveTo, yStartingAndEndingPoint)
+        new TouchAction(driver).longPress(longPressOptions()
+                .withPosition(point(xStartingPoint, yStartingAndEndingPoint))
+                .withElement(element(element)).withDuration(Duration.ofMillis(1000)))
+                .moveTo(point(pointToMoveTo, yStartingAndEndingPoint))
                 .release().perform();
     }
 
